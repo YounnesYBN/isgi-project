@@ -56,16 +56,19 @@ if (isset($_POST['submit'])) {
                     <option value="alterné">Alterné</option>
                 </select>
             </nav>
+    
+            <section>
                 <table border="1">
+                <thead>
                     <tr>
-                        <th>eeeedddd</th>
-                        <th>ddddd</th>
-                        <th>ddddd</th>
-                        <th>ddddd</th>
+                        <th>Aspeets à Trailer</th>
+                        <th>Eléments de traitement</th>
+                        <th>les données</th>
+                        <th>commentaires</th>
                     </tr>
+                </thead>
+                <tbody>
 
-                
-            
                 <?php
 
                     if ($_SESSION["info"]['type'] == "directeur") 
@@ -85,9 +88,16 @@ if (isset($_POST['submit'])) {
                 
     
                 ?>
-            
-            </table>
-        
+                </tbody>
+
+
+
+                
+
+                
+
+                </table>
+            </section>
             <button type="submit" name="submit">Validé</button>
         </form >
     </main>
