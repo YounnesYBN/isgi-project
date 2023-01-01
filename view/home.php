@@ -58,22 +58,41 @@ if (isset($_POST['submit'])) {
             </nav>
     
             <section>
+                <table border="1">
+                <thead>
+                    <tr>
+                        <th>Aspeets à Trailer</th>
+                        <th>Eléments de traitement</th>
+                        <th>les données</th>
+                        <th>commentaires</th>
+                    </tr>
+                </thead>
+                <tbody>
+
                 <?php
 
                     if ($_SESSION["info"]['type'] == "directeur") 
                     {
-                        include('directeur.php');
                     }
                     elseif ($_SESSION["info"]['type'] == "formateur") 
                     {
-                        include('formateur.php');
+                                                   
                     }else
                     {
-                        include('gestionnaires.php');
+                        
                     }
                 
     
                 ?>
+                </tbody>
+
+
+
+                
+
+                
+
+                </table>
             </section>
             <button type="submit" name="submit">Validé</button>
         </form >
