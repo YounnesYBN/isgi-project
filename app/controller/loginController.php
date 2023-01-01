@@ -3,10 +3,10 @@ $errorState = ["error"=>false,"message"=>""];
 session_start();
 include "./AppController.php";
 $controller = new AppController();
-if(isset($_GET["login"])){
-    $name = $_GET["email"];
-    $password = $_GET["password"];
-    $type = $_GET["type"];
+if(isset($_POST["login"])){
+    $name = $_POST["email"];
+    $password = $_POST["password"];
+    $type = $_POST["type"];
     $con = empty($name) == false &&empty($password) == false &&empty($type) == false ;
     if($con == true){
 
