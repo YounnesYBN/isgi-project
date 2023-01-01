@@ -1,5 +1,8 @@
 <?php
-
+session_start();
+if ($_SESSION["pass"] == false) {
+    header('location:login.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -52,6 +55,18 @@
     
             <section>
                 <?php
+
+                    if ($_SESSION["info"]['type'] == "directeur") 
+                    {
+                        include('directeur.php');
+                    }
+                    elseif ($_SESSION["info"]['type'] == "formateur") 
+                    {
+                        include('formateur.php');
+                    }else
+                    {
+                        include('gestionnaires.php');
+                    }
                 
     
                 ?>
