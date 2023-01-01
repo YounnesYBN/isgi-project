@@ -1,7 +1,10 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300);
+
 body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family:  sans-serif;
 }
 
 header {
@@ -13,9 +16,7 @@ header {
 
 header h2{
     color: rgb(255, 255, 255);
-    font-family:  sans-serif;
     font-size: 20px;
-    
 }
 
 header img{
@@ -42,4 +43,58 @@ nav select{
 
 nav select option{
     background-color: #072e55;
+}
+
+/* Login Page Styling */
+
+.containerLogin{
+    text-align: center;
+    position: relative;
+    width: 400px;
+    background-color: #43A047;
+    left: 50%;
+    transform: translate(-50%, 20%);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.containerLogin form{
+    border: 3px solid #f1f1f1;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.containerLogin input 
+,.containerLogin select
+,.containerLogin button {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border:none ;
+} 
+
+.containerLogin label{
+    color: #fff;
+}
+
+.containerLogin h2{
+    color: #072e55;
+    font-weight: 900;
+}
+
+.containerLogin button{
+    background-color: #072e55;
+    color: #fff;
+    
+}
+/* End of Login Styling */
+
+/* error message styling */
+.containerLogin span {
+    font-size: 15px;
+    color: rgb(196, 17, 17);
 }

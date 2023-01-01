@@ -3,6 +3,10 @@ session_start();
 if ($_SESSION["pass"] == false) {
     header('location:login.php');
 }
+
+if (isset($_POST['submit'])) {
+    
+}
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +22,7 @@ if ($_SESSION["pass"] == false) {
         <h2>PV du 1er Consiel de Classe de au titre de L'année 2022/2023 pour chaque filière</h2>
     </header>
     <main>
-        <form action="">
+        <form action="" method="POST">
             <nav>
                 <select name="filiere" id="selFiliere">
                     <option value="Filiere">Filière</option>
@@ -71,7 +75,7 @@ if ($_SESSION["pass"] == false) {
     
                 ?>
             </section>
-            <button type="submit">Validé</button>
+            <button type="submit" name="submit">Validé</button>
         </form >
     </main>
     <footer>
