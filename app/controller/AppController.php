@@ -1,6 +1,6 @@
 <?php 
-include "./../module/pdo.php";
-include "./../module/user.php" ;
+include "C:\\xampp\htdocs\Projects\schoolProject\isgi-project\app\module\pdo.php";
+include "C:\\xampp\htdocs\Projects\schoolProject\isgi-project\app\module\user.php" ;
 
 class AppController{
 

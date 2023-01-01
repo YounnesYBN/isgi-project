@@ -1,7 +1,11 @@
 <?php
-$errorState = ["error"=>false,"message"=>""];
 session_start();
-include "./AppController.php";
+
+// ------------------------------
+require 'AppController.php';
+// -----------------------------
+
+$errorState = ["error"=>false,"message"=>""];
 $controller = new AppController();
 if(isset($_POST["login"])){
     $name = $_POST["email"];
