@@ -48,7 +48,6 @@
                     <option value="residetiel">Résidetiel</option>
                     <option value="alterné">Alterné</option>
                 </select>
-                <button></button>
             </nav>
     
             <section>
@@ -57,8 +56,8 @@
     
                 ?>
             </section>
-            <button type="submit"></button>
-        </form>
+            <button type="submit">Validé</button>
+        </form >
     </main>
     <footer>
         
