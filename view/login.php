@@ -5,9 +5,9 @@ session_start();
 require '../app/controller/AppController.php';
 // -----------------------------
 
-$errorState = ["error"=>false,"message"=>""];
-$controller = new AppController();
 if(isset($_POST["submit"])){
+    $controller = new AppController();
+    $errorState = ["error"=>false,"message"=>""];
     $name = $_POST["email"];
     $password = $_POST["password"];
     $type = $_POST["type"];
@@ -70,10 +70,11 @@ if(isset($_POST["submit"])){
                 <option value="formateur">Formateur</option>
                 <option value="gestionnaires">Gestionnaires Des Stagaires</option>
                 <option value="directeur">Directeur</option>
+                <option value="conseiller">Conseiller</option>
             </select>
             <button type="submit" name="submit">S'identifier</button>
             <span>
-                <?php echo 'Oops! : ' . $errorState['message'] ?>
+                <?php echo (isset($errorState) ? 'Oops! : ' . $errorState['message'] : '' )?>
             </span>
         </form>
     </div>

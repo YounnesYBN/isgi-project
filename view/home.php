@@ -56,25 +56,38 @@ if (isset($_POST['submit'])) {
                     <option value="alterné">Alterné</option>
                 </select>
             </nav>
-    
-            <section>
+                <table border="1">
+                    <tr>
+                        <th>eeeedddd</th>
+                        <th>ddddd</th>
+                        <th>ddddd</th>
+                        <th>ddddd</th>
+                    </tr>
+
+                
+            
                 <?php
 
                     if ($_SESSION["info"]['type'] == "directeur") 
                     {
-                        include('directeur.php');
+                        include('includes/incDir.php');
                     }
                     elseif ($_SESSION["info"]['type'] == "formateur") 
                     {
-                        include('formateur.php');
+                        include('includes/incFor.php');
+                    }elseif ($_SESSION["info"]['type'] == "gestionnaires")
+                    {
+                        include('includes/incGst.php');
                     }else
                     {
-                        include('gestionnaires.php');
+                        include('includes/incCons.php');
                     }
                 
     
                 ?>
-            </section>
+            
+            </table>
+        
             <button type="submit" name="submit">Validé</button>
         </form >
     </main>

@@ -1,6 +1,6 @@
 <?php 
-include "C:\\xampp\htdocs\Projects\schoolProject\isgi-project\app\module\pdo.php";
-include "C:\\xampp\htdocs\Projects\schoolProject\isgi-project\app\module\user.php" ;
+include dirname(__DIR__). "../module/pdo.php";
+include dirname(__DIR__). "../module/user.php";
 
 class AppController{
 
