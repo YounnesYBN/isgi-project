@@ -17,7 +17,7 @@ if(isset($_POST["login"])){
                 $user = $controller->AllUsers[$i];
                 if($user->GetName()==$name&&$user->GetPassword()==$password&&$user->GetType()==$type){
                     $found = true ;
-                    $_SESSION["info"] = ["id"=>$user->GetId(),"name"=>$user->GetName(),"password"=>$user->GetPrenom(),"type"=>$user->GetType()];
+                    $_SESSION["info"] = ["id"=>$user->GetId(),"name"=>$user->GetName(),"password"=>$user->GetPassword(),"type"=>$user->GetType()];
                     $_SESSION["pass"] = true ;
                 } 
             }
