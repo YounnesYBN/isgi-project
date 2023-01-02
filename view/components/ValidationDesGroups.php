@@ -9,7 +9,7 @@ if ($_SESSION["pass"] == false) {
 
 
 <tr>
-   <td rowspan="6">validation des groupes - Directeur</td> 
+   <td rowspan="6" class="tds">validation des groupes - Directeur</td> 
 </tr>
 <tr>
     

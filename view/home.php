@@ -15,11 +15,15 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel="stylesheet" href="../src/css/style.css">
+    <link rel="stylesheet" href="../src/css/styleTable.css">
 </head>
 <body>
     <header>
         <img src="../src/img/Logo.png" alt="ofppt logo">
         <h2>PV du 1er Consiel de Classe de au titre de L'année 2022/2023 pour chaque filière</h2>
+        <form action="logout.php">
+            <button type="submit">Logout</button>
+        </form>
     </header>
     <main>
         <form action="" method="POST">
