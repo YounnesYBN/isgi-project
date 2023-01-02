@@ -1,7 +1,6 @@
 <?php 
-
-include dirname(__DIR__)."../module/pdo.php";
-include dirname(__DIR__)."../module/user.php";
+include dirname(__DIR__). "../module/pdo.php";
+include dirname(__DIR__). "../module/user.php";
 
 class AppController{
 

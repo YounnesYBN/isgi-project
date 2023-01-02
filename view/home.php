@@ -73,13 +73,17 @@ if (isset($_POST['submit'])) {
 
                     if ($_SESSION["info"]['type'] == "directeur") 
                     {
+                        include('includes/incDir.php');
                     }
                     elseif ($_SESSION["info"]['type'] == "formateur") 
                     {
-                                                   
+                        include('includes/incFor.php');
+                    }elseif ($_SESSION["info"]['type'] == "gestionnaires")
+                    {
+                        include('includes/incGst.php');
                     }else
                     {
-                        
+                        include('includes/incCons.php');
                     }
                 
     
