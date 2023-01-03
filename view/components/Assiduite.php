@@ -6,7 +6,7 @@ if ($_SESSION["pass"] == false) {
 ?>
 
 <tr>
-    <td rowspan="8">Assiduité</td>
+    <td rowspan="8" class="tds">Assiduité</td>
 </tr>
 
 <tr>

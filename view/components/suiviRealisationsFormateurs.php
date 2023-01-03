@@ -6,7 +6,7 @@ if ($_SESSION["pass"] == false) {
 ?>
 
 <tr>
-    <td rowspan="9">Suivi des résalisations des formateurs</td>
+    <td rowspan="9" class="tds">Suivi des résalisations des formateurs</td>
 </tr>
 
 <tr>

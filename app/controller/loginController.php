@@ -2,49 +2,45 @@
 session_start();
 
 // ------------------------------
-require 'AppController.php';
+require '../app/controller/AppController.php';
 // -----------------------------
 
-$errorState = ["error"=>false,"message"=>""];
-$controller = new AppController();
-if(isset($_POST["login"])){
+if(isset($_POST["submit"])){
+    $controller = new AppController();
+    $errorState = ["error"=>false,"message"=>""];
     $name = $_POST["email"];
     $password = $_POST["password"];
     $type = $_POST["type"];
-    $con = empty($name) == false &&empty($password) == false &&empty($type) == false ;
+    $con = empty($name) == false && empty($password) == false && empty($type) == false ;
     if($con == true){
-
         if($controller->CheckConnectionDB()){
             $controller->GetAllUsers();
             $found = false ;
-            for ($i=0; $i < $controller->AllUsers; $i++) { 
+
+            
+            for ($i=0; $i < count($controller->AllUsers) ; $i++) { 
+
                 $user = $controller->AllUsers[$i];
-                if($user->GetName()==$name&&$user->GetPassword()==$password&&$user->GetType()==$type){
+                if($user->GetName()==$name && $user->GetPassword()==$password && $user->GetType()==$type){
                     $found = true ;
                     $_SESSION["info"] = ["id"=>$user->GetId(),"name"=>$user->GetName(),"password"=>$user->GetPassword(),"type"=>$user->GetType()];
                     $_SESSION["pass"] = true ;
                 } 
             }
             if($found == true){
-                $errorState["error"] = false;
-                $errorState["message"] = "login success";
+                header('location:home.php');
             }else{
                 $errorState["error"] = true;
-                $errorState["message"] = "login failed";
+                $errorState["message"] = "La connexion a échoué, vérifiez les informations que vous avez saisies.";
             }
             
         }else{
             $errorState["error"] = true;
-            $errorState["message"] = "error in database";
+            $errorState["message"] = "La connexion a échoué, erreur inconnue.";
         }
     }else{
         $errorState["error"] = true;
-        $errorState["message"] = "enter all info";
+        $errorState["message"] = "Toutes les informations doivent être saisies.";
     }
 }
-
-
-
-
-
 ?>
