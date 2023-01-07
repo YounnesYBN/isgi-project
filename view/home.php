@@ -85,7 +85,7 @@ if (isset($_POST['submit'])) {
                     }elseif ($_SESSION["info"]['type'] == "gestionnaires")
                     {
                         include 'includes/incGst.php' ;
-                    }else
+                    }elseif($_SESSION["info"]['type'] == "conseiller")
                     {
                         include 'includes/incCons.php' ;
                     }
