@@ -1,41 +1,38 @@
-<?php
+<?php 
+
+
 if ($_SESSION["pass"] == false) {
-    header('location:login.php');
+    header('location:./../login.php');
 }
 
+$c8 = new AppController();
+$c8->GetAllElement();
+$arrayAfterFilter8 = [];
+foreach($c8->AllElement as $element){
+      if($element->GetAspeets_traiter()->GetLibelle() == "Analyse resultats EFM et accompagnent des stagaires"){
+        $arrayAfterFilter8[] = $element ;
+      }
+}
+$rowSpanNum8 = count($arrayAfterFilter8) + 1 ;
+
+$validationGroupRows8 = "
+
+    <tr>
+        <td rowspan='{$rowSpanNum8}'>Analyse resultats EFM et accompagnent des stagaires</td>
+    </tr>
+";
+
+foreach($arrayAfterFilter8 as $element){
+    $validationGroupRows8 .= "
+        <tr>
+            <td>{$element->GetElement()}</td>
+            <td><input type='number' value='{$element->GetDonnees()}' /></td>
+            <td><input type='text' /></td>
+        </tr>
+    " ;
+
+}
+
+echo $validationGroupRows8 ;
+
 ?>
-
-<tr>
-    <td rowspan="6" class="tds">Analyse resultats EFM et accompagnent des stagaires</td>
-</tr>
-
-<tr>
-    <td>Effectif des stagaires en formation</td>
-    <td><input type="number" name=""></td>
-    <td><input type="text" name=""></td>
-</tr>
-
-<tr>
-    <td>Nombre de stagaires en difficultés</td>
-    <td><input type="number" name=""></td>
-    <td><input type="text" name=""></td>
-</tr>
-
-<tr>
-    <td>Les raisons de la situation des stagaires en difficultés</td>
-    <td><input type="number" name=""></td>
-    <td><input type="text" name=""></td>
-</tr>
-
-<tr>
-    <td>Les action mises en place pour la régularisation de la situation</td>
-    <td><input type="number" name=""></td>
-    <td><input type="text" name=""></td>
-</tr>
-
-<tr>
-    
-    <td>Les propositions d'amélioration</td>
-    <td><input type="number" name=""></td>
-    <td><input type="text" name=""></td>
-</tr>

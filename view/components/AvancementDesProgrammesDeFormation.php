@@ -1,50 +1,38 @@
 <?php 
 
+
 if ($_SESSION["pass"] == false) {
-    header('location:login.php');
+    header('location:./../login.php');
 }
 
-?>
-<tr>
-    <td rowspan="9" class="tds">Avancement Des Programmes De Formation</td> 
-</tr>
-<tr>
-    <td>nomber total de groups </td>
-    <td><input type="number"></td>
-    <td><input type="text"></td>
-</tr>
-<tr>
-    <td>Nombre total de groupes ayant un taux d'AP convenable</td>
-    <td><input type="number"></td>
-    <td><input type="text"></td>
-</tr>
-<tr>
-    <td>Nombre total de groupes ayant un taux d'AP moyen</td>
-    <td><input type="number"></td>
-    <td><input type="text"></td>
-</tr>
-<tr>
-    <td>Nombre total de groupes ayant un taux d'AP faible</td>
-    <td><input type="number"></td>
-    <td><input type="text"></td>
-</tr>
-<tr>
-    <td>Nombre de groupes prévus d'achever le programme de fromation a temps($fin mai 2022 pour 2 A et début juillet 2022 pour 1A)</td>
-    <td><input type="number"></td>
-    <td><input type="text"></td>
-</tr>
-<tr>
-<td>les raison du faible taux d'AP</td>
-    <td><input type="number"></td>
-    <td><input type="text"></td>
-</tr>
+$c6 = new AppController();
+$c6->GetAllElement();
+$arrayAfterFilter6 = [];
+foreach($c6->AllElement as $element){
+      if($element->GetAspeets_traiter()->GetLibelle() == "Avancement Des Programmes De Formation"){
+        $arrayAfterFilter6[] = $element ;
+      }
+}
+$rowSpanNum6 = count($arrayAfterFilter6) + 1 ;
+
+$validationGroupRows6 = "
+
     <tr>
-<td>Les action mises en place pour la régularisation de la situation </td>
-    <td><input type="number"></td>
-    <td><input type="text"></td>
-</tr>
-<tr>
-    <td>les propositions d'amélioration</td>
-    <td><input type="number"></td>
-    <td><input type="text"></td>
-</tr>
+        <td rowspan='{$rowSpanNum6}'>Avancement Des Programmes De Formation</td>
+    </tr>
+";
+
+foreach($arrayAfterFilter6 as $element){
+    $validationGroupRows6 .= "
+        <tr>
+            <td>{$element->GetElement()}</td>
+            <td><input type='number' value='{$element->GetDonnees()}' /></td>
+            <td><input type='text' /></td>
+        </tr>
+    " ;
+
+}
+
+echo $validationGroupRows6 ;
+
+?>

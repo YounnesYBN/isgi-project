@@ -1,54 +1,38 @@
-<?php
+<?php 
+
+
 if ($_SESSION["pass"] == false) {
-    header('location:login.php');
+    header('location:./../login.php');
 }
 
+$c4 = new AppController();
+$c4->GetAllElement();
+$arrayAfterFilter4 = [];
+foreach($c4->AllElement as $element){
+      if($element->GetAspeets_traiter()->GetLibelle() == "Planification des stages en entreprises"){
+        $arrayAfterFilter4[] = $element ;
+      }
+}
+$rowSpanNum4 = count($arrayAfterFilter4) + 1 ;
+
+$validationGroupRows4 = "
+
+    <tr>
+        <td rowspan='{$rowSpanNum4}'>Planification des stages en entreprises</td>
+    </tr>
+";
+
+foreach($arrayAfterFilter4 as $element){
+    $validationGroupRows4 .= "
+        <tr>
+            <td>{$element->GetElement()}</td>
+            <td><input type='number' value='{$element->GetDonnees()}' /></td>
+            <td><input type='text' /></td>
+        </tr>
+    " ;
+
+}
+
+echo $validationGroupRows4 ;
+
 ?>
-
-<tr>
-    <td rowspan="8" class="tds">Planification des stages en entreprises</td>
-</tr>
-
-<tr>
-    <td>NB de groupes intégrés à l'état de Planification des stages</td>
-    <td><input type="number" name=""></td>
-    <td><input type="text" name=""></td>
-</tr>
-
-<tr>
-    <td>Nombre total de stagiaires conecernés par le stage</td>
-    <td><input type="number" name=""></td>
-    <td><input type="text" name=""></td>
-</tr>
-
-<tr>
-    <td>Nombre total de stagaires de formateur conseiller/encadrant</td>
-    <td><input type="number" name=""></td>
-    <td><input type="text" name=""></td>
-</tr>
-
-<tr>
-    <td>Nombre de stagiaires ayant signé le contrat de stage</td>
-    <td><input type="number" name=""></td>
-    <td><input type="text" name=""></td>
-</tr>
-
-<tr>
-    <td>Les raisons de non singateure des contrats de stage pour les stagiaires conecernés</td>
-    <td><input type="number" name=""></td>
-    <td><input type="text" name=""></td>
-</tr>
-
-<tr>
-    <td>Les action mises en place pour la régularisation de la situation</td>
-    <td><input type="number" name=""></td>
-    <td><input type="text" name=""></td>
-</tr>
-
-<tr>
-    
-    <td>Les Propositions d'amélioration</td>
-    <td><input type="number" name=""></td>
-    <td><input type="text" name=""></td>
-</tr>
-

@@ -1,12 +1,13 @@
 <?php
 
+include dirname(__DIR__) . "../../app/controller/AppController.php";
 if ($_SESSION["pass"] == false) {
     header('location:login.php');
 }
 
-    include ('../components/AvancementDesProgrammesDeFormation.php');
-    include ('../components/RealisationDesEvaluationDeModule.php');
-    include ('../components/AnalyseResultatsEFMAccompagnentStagaires.php');
-    include ('../components/PlanificationStagesEntrepriser.php');
-    include ('../components/suiviRealisationsFormateurs.php');
+    include dirname(__DIR__).'../components/AvancementDesProgrammesDeFormation.php' ;
+    include dirname(__DIR__).'../components/RealisationDesEvaluationDeModule.php' ;
+    include dirname(__DIR__).'../components/AnalyseResultatsEFMAccompagnentStagaires.php' ;
+    include dirname(__DIR__).'../components/PlanificationStagesEntrepriser.php' ;
+    include dirname(__DIR__).'../components/suiviRealisationsFormateurs.php' ;
 ?>

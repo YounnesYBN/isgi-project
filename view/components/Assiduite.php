@@ -1,53 +1,38 @@
-<?php
+<?php 
+
+
 if ($_SESSION["pass"] == false) {
-    header('location:login.php');
+    header('location:./../login.php');
 }
 
+$c7 = new AppController();
+$c7->GetAllElement();
+$arrayAfterFilter7 = [];
+foreach($c7->AllElement as $element){
+      if($element->GetAspeets_traiter()->GetLibelle() == "Assiduité"){
+        $arrayAfterFilter7[] = $element ;
+      }
+}
+$rowSpanNum7 = count($arrayAfterFilter7) + 1 ;
+
+$validationGroupRows7 = "
+
+    <tr>
+        <td rowspan='{$rowSpanNum7}'>Assiduité</td>
+    </tr>
+";
+
+foreach($arrayAfterFilter7 as $element){
+    $validationGroupRows7 .= "
+        <tr>
+            <td>{$element->GetElement()}</td>
+            <td><input type='number' value='{$element->GetDonnees()}' /></td>
+            <td><input type='text' /></td>
+        </tr>
+    " ;
+
+}
+
+echo $validationGroupRows7 ;
+
 ?>
-
-<tr>
-    <td rowspan="8" class="tds">Assiduité</td>
-</tr>
-
-<tr>
-    <td>Effectif des stagaires en formation</td>
-    <td><input type="number" name=""></td>
-    <td><input type="text" name=""></td>
-</tr>
-
-<tr>
-    <td>Effectif des stagaires conecernés par l'absence</td>
-    <td><input type="number" name=""></td>
-    <td><input type="text" name=""></td>
-</tr>
-
-<tr>
-    <td>Le taux moyen d'absentéisme des groupes de la filière pour un groupe = SOMME DES HOURES ABSENTEES / (SOMME DES HOURES REALISEES * NB STAGAIRES PAR GROUPE)</td>
-    <td><input type="number" name=""></td>
-    <td><input type="text" name=""></td>
-</tr>
-
-<tr>
-    <td>Le nombre de conseil discipline tenus</td>
-    <td><input type="number" name=""></td>
-    <td><input type="text" name=""></td>
-</tr>
-
-<tr>
-    
-    <td>Les raisons d'absentéisme</td>
-    <td><input type="number" name=""></td>
-    <td><input type="text" name=""></td>
-</tr>
-
-<tr>
-    <td>Les action mises en place pour la régularisation de la situation</td>
-    <td><input type="number" name=""></td>
-    <td><input type="text" name=""></td>
-</tr>
-
-<tr>
-    <td>Les Propositions d'amélioration</td>
-    <td><input type="number" name=""></td>
-    <td><input type="text" name=""></td>
-</tr>

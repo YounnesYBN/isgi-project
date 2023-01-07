@@ -77,17 +77,17 @@ if (isset($_POST['submit'])) {
 
                     if ($_SESSION["info"]['type'] == "directeur") 
                     {
-                        include('includes/incDir.php');
+                        include 'includes/incDir.php' ;
                     }
                     elseif ($_SESSION["info"]['type'] == "formateur") 
                     {
-                        include('includes/incFor.php');
+                        include 'includes/incFor.php' ;
                     }elseif ($_SESSION["info"]['type'] == "gestionnaires")
                     {
-                        include('includes/incGst.php');
-                    }else
+                        include 'includes/incGst.php' ;
+                    }elseif($_SESSION["info"]['type'] == "conseiller")
                     {
-                        include('includes/incCons.php');
+                        include 'includes/incCons.php' ;
                     }
                 
     
