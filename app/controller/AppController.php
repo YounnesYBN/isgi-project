@@ -53,7 +53,10 @@ class AppController
         $rs = $db->SelectQeurys($q);
         while ($line = $rs->fetch()) {
             $aspeets_traiter = new Aspeets_traiter($line["id_asp"], $line["libelle"]);
-            $element = new Element_Traiter($line["id_glo"], $line["element_traitement"], $line["donnees"], $aspeets_traiter);
+
+            $type = in_array($line["id_glo"],[3,20,27,36,44]) ? "select" : (in_array($line["id_glo"],[5,22,29,38,46]) ? "proposition" : "input") ;
+
+            $element = new Element_Traiter($line["id_glo"], $line["element_traitement"], $line["donnees"], $aspeets_traiter,$type);
             $this->AllElement[] = $element;
         }
     }
@@ -110,11 +113,33 @@ class AppController
         while ($line = $rs->fetch()) {
             $user = new User($line["id_uti"], $line["email"], $line["password"], $line["type"]);
             $aspeets_traiter = new Aspeets_traiter($line["id_asp"], $line["libelle"]);
-            $element = new Element_Traiter($line["id_ele"], $line["element_traitement"], $line["donnees"], $aspeets_traiter);
+            $type = in_array($line["id_ele"],[3,20,27,36,44]) ? "select" : (in_array($line["id_ele"],[5,22,29,38,46]) ? "proposition" : "input") ;
+            $element = new Element_Traiter($line["id_ele"], $line["element_traitement"], $line["donnees"], $aspeets_traiter,$type);
             $commantaire = new Commantaire($line["id_com"],$line["text_commantaire"],$user);
             $table_association = new Table_association($line["id_aso"],$commantaire,$element);
             $this->AllTable_association[] = $table_association ;
         }
+    }
+
+    public function SetCommantaire(){
+        foreach($this->AllElement as $element){
+            if($element->GetCommentType() == "input"){
+                foreach($this->AllTable_association as $tableAssco){
+                    if($tableAssco->GetElement()->GetId() == $element->GetId()){
+                        $element->SetComment($tableAssco->Getcommantaire()); 
+                    }
+                }
+            }else{
+                foreach($this->AllTable_association as $tableAssco){
+                    $AllComArray = array();
+                    if($tableAssco->GetElement()->GetId() == $element->GetId()){
+                         $AllComArray[] = $tableAssco->Getcommantaire() ;
+                    }
+                    $element->SetComment($AllComArray) ;
+                }
+            }
+        }
+        
     }
 
 }
