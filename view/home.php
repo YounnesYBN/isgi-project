@@ -15,7 +15,6 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel="stylesheet" href="../src/css/style.css">
-    <link rel="stylesheet" href="../src/css/styleTable.css">
     <link rel="stylesheet" href="../src/css/fontAwesome.min.css">
     <link rel="stylesheet" href="../src/css/selectModal.css">
         <?php include '../src/css/tableStyle.php'?>
