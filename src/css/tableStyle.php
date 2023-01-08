@@ -40,7 +40,7 @@
         color: #009879;
     }
 
-    table tr td:nth-child(2){
+    table tr td:nth-child(2) , table tr td:nth-child(3){
         padding: 0;
     }
 
@@ -82,6 +82,51 @@
     thead tr th:nth-child(3){
         width: 84px;
 
+    }
+
+
+    /* commentaires style*/
+
+    tr td select{
+        width: 70%;
+        height: 35px;
+        border-radius: 5px;
+        margin: 0;
+        box-sizing: border-box;
+        padding-left: 5px;
+        outline: none;
+        text-align: center;
+        border: 1px solid #072e55;
+        cursor: pointer;
+    }
+    tr td select option{
+        background-color: #072e55;
+        color: #fff;
+    }
+
+    tr td #btn-select{
+        width: 25%;
+        min-width: 100px;
+        height: 35px;
+        border-radius: 5px;
+        margin: 3px;
+        box-sizing: border-box;
+        padding-left: 5px;
+        outline: none;
+        text-align: center;
+        border: 1px solid rgb(7, 46, 85);
+        cursor: pointer;
+    }
+
+    #textComment{
+        margin: 0;
+        height: fit-content;
+        border: none;
+        width: 98%;
+        border: none;
+        outline: none;
+        padding: 5px;
+        font-size: 16px;
     }
 
 

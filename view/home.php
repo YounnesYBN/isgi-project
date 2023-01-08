@@ -17,6 +17,7 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="../src/css/style.css">
     <link rel="stylesheet" href="../src/css/styleTable.css">
     <link rel="stylesheet" href="../src/css/fontAwesome.min.css">
+    <link rel="stylesheet" href="../src/css/selectModal.css">
 </head>
 <body>
     <header>
@@ -111,5 +112,8 @@ if (isset($_POST['submit'])) {
     <footer>
         
     </footer>
+
+    <script src="../src/js/jquery-3.6.3.min.js"></script>
+    <script src="../src/js/script.js"></script>
 </body>
 </html>
