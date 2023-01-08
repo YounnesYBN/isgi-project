@@ -132,7 +132,7 @@
     }
 
 
-    <!--Modal style-->
+    /*Modal style*/
 
     #popupCon{
         height: 100vh;
@@ -219,6 +219,20 @@
         width: 20%;
         height: 50%;
 
+    }
+
+    header{
+        justify-content: space-around;
+    }
+
+    header form button{
+
+        height: 40px;
+        background-color: #009879;
+        color: #ffffff;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
     }
 
 

@@ -18,16 +18,16 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="../src/css/styleTable.css">
     <link rel="stylesheet" href="../src/css/fontAwesome.min.css">
     <link rel="stylesheet" href="../src/css/selectModal.css">
+        <?php include '../src/css/tableStyle.php'?>
 </head>
 <body>
     <header>
         <img src="../src/img/Logo.png" alt="ofppt logo">
         <h2>PV du 1er Consiel de Classe de au titre de L'année 2022/2023 pour chaque filière</h2>
         <form action="logout.php">
-            <button type="submit">Logout</button>
+            <button type="submit" style="width: 90px; margin: 15px " id="btn-logout">Logout</button>
         </form>
 
-        <?php include '../src/css/tableStyle.php'?>
     </header>
         <div id="popupCon" style="
         display:none;
