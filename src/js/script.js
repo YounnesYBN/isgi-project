@@ -1,5 +1,5 @@
 
-console.log(document.cookie)
+
 
 var GlobalOptionMessage = "";
 var GlobalId_user = "";
@@ -68,7 +68,7 @@ function findChild(element,child_val){
 function SetSelectOnLoad(){
     var allSelectOnDocument = document.getElementsByName("selectComment")
     var AllCookiesSelect = JSON.parse(getCookie("selectArray"))
-    console.log(AllCookiesSelect)
+    
     AllCookiesSelect.map((cookiSelect)=>{
           for (let index = 0; index < allSelectOnDocument.length; index++) {
             const select = allSelectOnDocument[index];
