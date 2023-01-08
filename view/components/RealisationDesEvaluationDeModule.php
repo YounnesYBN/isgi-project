@@ -41,10 +41,7 @@ foreach($arrayAfterFilter3 as $element){
                <td><input type='number' value='{$element->GetDonnees()}' /></td>
                <td>
                    <select name='selectComment' id='{$element->GetId()}'>
-                           <option value=''>Choisir Un</option>
-                           <option value=''>option A</option>
-                           <option value=''>option B</option>
-                           <option value=''>option C</option>
+                            
                            {$otherOption}
                    </select>
                    <button type='button' id='btn-select' id_ele='{$element->GetId()}' id_user='{$id_user}'>Ajouter Un option</button>
@@ -58,10 +55,7 @@ foreach($arrayAfterFilter3 as $element){
                <td><input type='number' value='{$element->GetDonnees()}' /></td>
                <td>
                    <select name='selectComment' id='{$element->GetId()}'>
-                           <option value=''>Choisir Un</option>
-                           <option value=''>option A</option>
-                           <option value=''>option B</option>
-                           <option value=''>option C</option>
+                            
                            {$otherOption}
                    </select>
                    <button type='button' id='btn-select' id_ele='{$element->GetId()}' id_user='{$id_user}'>Ajouter Un option</button>
