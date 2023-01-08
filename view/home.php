@@ -136,7 +136,7 @@ if (isset($_POST['submit'])) {
                 </table>
             </section>
             <div class="btnDiv">
-            <button type="submit" name="submit" id="btn-valide">Valider</button>
+            <button type="button" name="submit" id="btn-valide">Valider</button>
             </div>
         </form >
     </main>

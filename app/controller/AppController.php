@@ -155,4 +155,28 @@ class AppController
         }
     }
 
+    public function UpdateElementNumber($value,$id_ele){
+        $db = new PDOdb();
+        $con  = $db->ConnecteToDB();
+        if($con){
+            $q = " call updateData({$id_ele},'{$value}')";
+            $db->SelectQeurys($q) ;
+            return false ;
+        }else{
+            return true ;
+        }
+    }
+
+    public function UpdateElementTextaria($id_ele,$id_user,$value,){
+        $db = new PDOdb();
+        $con  = $db->ConnecteToDB();
+        if($con){
+            $q = "call addNewComTypeInput({$id_ele},'{$value}',{$id_user})";
+            $db->SelectQeurys($q) ;
+            return false ;
+        }else{
+            return true;
+        }
+    }
+
 }
