@@ -25,9 +25,9 @@ $validationGroupRows5 = "
 foreach($arrayAfterFilter5 as $element){
     $validationGroupRows5 .= "
         <tr>
-            <td>{$element->GetElement()}</td>
-            <td><input type='number' value='{$element->GetDonnees()}' /></td>
-            <td><input type='text' /></td>
+            <td class='tdA'>{$element->GetElement()}</td>
+            <td class='tdB'><input type='number' value='{$element->GetDonnees()}' /></td>
+            <td class='tdC'><input type='text' /></td>
         </tr>
     " ;
 

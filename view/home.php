@@ -16,6 +16,7 @@ if (isset($_POST['submit'])) {
     <title>Document</title>
     <link rel="stylesheet" href="../src/css/style.css">
     <link rel="stylesheet" href="../src/css/styleTable.css">
+    <link rel="stylesheet" href="../src/css/fontAwesome.min.css">
 </head>
 <body>
     <header>
@@ -24,6 +25,8 @@ if (isset($_POST['submit'])) {
         <form action="logout.php">
             <button type="submit">Logout</button>
         </form>
+
+        <?php include '../src/css/tableStyle.php'?>
     </header>
     <main>
         <form action="" method="POST">
@@ -62,11 +65,11 @@ if (isset($_POST['submit'])) {
             </nav>
     
             <section>
-                <table border="1">
+                <table >
                 <thead>
                     <tr>
-                        <th>Aspeets à Trailer</th>
-                        <th>Eléments de traitement</th>
+                        <th >Aspeets à Trailer</th>
+                        <th >Eléments de traitement</th>
                         <th>les données</th>
                         <th>commentaires</th>
                     </tr>

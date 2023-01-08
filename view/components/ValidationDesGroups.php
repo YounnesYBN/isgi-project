@@ -27,7 +27,7 @@ foreach($arrayAfterFilter1 as $element){
         <tr>
             <td>{$element->GetElement()}</td>
             <td><input type='number' value='{$element->GetDonnees()}' /></td>
-            <td><input type='text' /></td>
+            <td><img src='../src/img/imgComment.jpg' alt='Comment' width='25px'></td>
         </tr>
     " ;
 
