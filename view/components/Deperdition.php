@@ -40,7 +40,7 @@ foreach($arrayAfterFilter5 as $element){
                <td>{$element->GetElement()}</td>
                <td><input type='number' value='{$element->GetDonnees()}' /></td>
                <td>
-                   <select name='selectComment' id=''>
+                   <select name='selectComment' id='{$element->GetId()}'>
                            <option value=''>Choisir Un</option>
                            <option value=''>option A</option>
                            <option value=''>option B</option>
@@ -57,7 +57,7 @@ foreach($arrayAfterFilter5 as $element){
                <td>{$element->GetElement()}</td>
                <td><input type='number' value='{$element->GetDonnees()}' /></td>
                <td>
-                   <select name='selectComment' id=''>
+                   <select name='selectComment' id='{$element->GetId()}'>
                            <option value=''>Choisir Un</option>
                            <option value=''>option A</option>
                            <option value=''>option B</option>

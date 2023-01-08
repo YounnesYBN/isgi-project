@@ -123,23 +123,36 @@ class AppController
 
     public function SetCommantaire(){
         foreach($this->AllElement as $element){
-            if($element->GetCommentType() == "input"){
+            if($element->GetCommentType() == "select"){
+                $AllComArray = array();
+                foreach($this->AllTable_association as $tableAssco){
+                    if($tableAssco->GetElement()->GetId() == $element->GetId()){
+                        $AllComArray[] = $tableAssco->Getcommantaire() ;
+                    }
+                }
+                $element->SetComment($AllComArray) ;
+            }else{
                 foreach($this->AllTable_association as $tableAssco){
                     if($tableAssco->GetElement()->GetId() == $element->GetId()){
                         $element->SetComment($tableAssco->Getcommantaire()); 
                     }
                 }
-            }else{
-                foreach($this->AllTable_association as $tableAssco){
-                    $AllComArray = array();
-                    if($tableAssco->GetElement()->GetId() == $element->GetId()){
-                         $AllComArray[] = $tableAssco->Getcommantaire() ;
-                    }
-                    $element->SetComment($AllComArray) ;
-                }
             }
         }
         
+    }
+
+    public function addOption($id_user,$id_ele,$message){
+        
+        $db = new PDOdb();
+        $con  = $db->ConnecteToDB();
+        if($con){
+            $q = "call addNewComTypeSelectProp({$id_ele},'{$message}',{$id_user})";
+            $rs = $db->SelectQeurys($q) ;
+            return ["error"=>false,'id_option'=>$rs->fetch()["id_option"]] ;
+        }else{
+            return ["error"=>true] ;
+        }
     }
 
 }

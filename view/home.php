@@ -50,7 +50,7 @@ if (isset($_POST['submit'])) {
                     </button>
                 </div>
                 <div class="textAria con">
-                <textarea placeholder="Ajouter Une Option:" ></textarea>
+                <textarea placeholder="Ajouter Une Option:" id="optionTextAria" ></textarea>
                 </div>
                 <div class="AddBut con">
                     <button id="addButt">
