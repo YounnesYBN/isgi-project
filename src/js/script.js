@@ -19,7 +19,7 @@ function getCookie(cookieName) {
 
 function CreateCoockieIfNotExist(){
     
-    if(getCookie("selectArray") !=undefined){
+    if(getCookie("selectArray") != undefined){
 
     }else{
         var selectArray = []
@@ -140,7 +140,7 @@ function AddOption(id_ele,id_user,message){
                 var newOptionVal = response.id_option
                 for (let index = 0; index < allSelect.length; index++) {
                     const element = allSelect[index];
-                    if(element.id = id_ele){
+                    if(element.id == id_ele){
                         element.innerHTML += `<option selected value='${newOptionVal}'>${message}</option>` 
                     }
                     
