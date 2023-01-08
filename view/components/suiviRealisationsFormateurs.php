@@ -7,6 +7,8 @@ if ($_SESSION["pass"] == false) {
 
 $c2 = new AppController();
 $c2->GetAllElement();
+$c2->GetAllTable_association();
+$c2->SetCommantaire();
 $arrayAfterFilter2 = [];
 foreach($c2->AllElement as $element){
       if($element->GetAspeets_traiter()->GetLibelle() == "Suivi des résalisations des formateurs"){
@@ -23,11 +25,14 @@ $validationGroupRows2 = "
 ";
 
 foreach($arrayAfterFilter2 as $element){
+    $val = $element->GetCommentType()=="input"?($element->GetComment()==null ?"":$element->GetComment()->GetText_commantaire()):"" ;
+    
     $validationGroupRows2 .= "
         <tr>
-            <td class='tdA'>{$element->GetElement()}</td>
-            <td class='tdB'><input type='number' value='{$element->GetDonnees()}' /></td>
-            <td class='tdC'><input type='text' /></td>
+            <td>{$element->GetElement()}</td>
+            <td><input type='number' value='{$element->GetDonnees()}' /></td>
+            <td><input type='text' value='{$val}' id_ele='{$element->GetId()}' type_ele='{$element->GetCommentType()}' /></td>
+        
         </tr>
     " ;
 

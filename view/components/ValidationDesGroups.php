@@ -8,6 +8,11 @@ if ($_SESSION["pass"] == false) {
 
 $c1 = new AppController();
 $c1->GetAllElement();
+$c1->GetAllTable_association();
+$c1->SetCommantaire();
+
+// print_r($c1->AllElement);
+
 $arrayAfterFilter1 = [];
 foreach($c1->AllElement as $element){
       if($element->GetAspeets_traiter()->GetLibelle() == "validation des groupes"){
@@ -23,11 +28,13 @@ $validationGroupRows = "
 ";
 
 foreach($arrayAfterFilter1 as $element){
+    $val = $element->GetCommentType()=="input"?($element->GetComment()==null ?"":$element->GetComment()->GetText_commantaire()):"" ;
     $validationGroupRows .= "
         <tr>
             <td>{$element->GetElement()}</td>
             <td><input type='number' value='{$element->GetDonnees()}' /></td>
-            <td><img src='../src/img/imgComment.jpg' alt='Comment' width='25px'></td>
+            <td><input type='text' value='{$val}' id_ele='{$element->GetId()}' type_ele='{$element->GetCommentType()}' /></td>
+        
         </tr>
     " ;
 

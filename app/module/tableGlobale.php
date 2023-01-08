@@ -5,13 +5,17 @@ class Element_Traiter{
     private $element;
     private $donnees;
     private $aspeets_traiter;
+    private $commentType ;
+    private $commants ;
 
-    public function __construct($id,$element,$donnees,$aspeets_traiter)
+    public function __construct($id,$element,$donnees,$aspeets_traiter,$commentType)
     {
         $this->id = $id;
         $this->element = $element;
         $this->donnees = $donnees;
         $this->aspeets_traiter = $aspeets_traiter;
+        $this->commentType = $commentType;
+        $this->commants = null ;
     }
 
     public function GetId(){
@@ -26,6 +30,12 @@ class Element_Traiter{
     public function GetAspeets_traiter(){
         return $this->aspeets_traiter ;
     }
+    public function GetCommentType(){
+        return $this->commentType ;
+    }
+    public function GetComment(){
+        return $this->commants ;
+    }
     public function SetId($p){
          $this->id = $p;
     }
@@ -38,6 +48,12 @@ class Element_Traiter{
     public function SetAspeets_traiter($p){
          $this->aspeets_traiter = $p;
     }
+    public function SetCommentType($p){
+         $this->commentType = $p ;
+    }
+    public function SetComment($p){
+        $this->commants = $p ;
+   }
 }
 
 ?>

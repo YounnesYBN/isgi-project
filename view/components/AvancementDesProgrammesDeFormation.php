@@ -7,6 +7,8 @@ if ($_SESSION["pass"] == false) {
 
 $c6 = new AppController();
 $c6->GetAllElement();
+$c6->GetAllTable_association();
+$c6->SetCommantaire();
 $arrayAfterFilter6 = [];
 foreach($c6->AllElement as $element){
       if($element->GetAspeets_traiter()->GetLibelle() == "Avancement Des Programmes De Formation"){
@@ -23,11 +25,14 @@ $validationGroupRows6 = "
 ";
 
 foreach($arrayAfterFilter6 as $element){
+    $val = $element->GetCommentType()=="input"?($element->GetComment()==null ?"":$element->GetComment()->GetText_commantaire()):"" ;
+    
     $validationGroupRows6 .= "
         <tr>
-            <td class='tdA'>{$element->GetElement()}</td>
-            <td class='tdB'><input type='number' value='{$element->GetDonnees()}' /></td>
-            <td class='tdC'><input type='text' /></td>
+            <td>{$element->GetElement()}</td>
+            <td><input type='number' value='{$element->GetDonnees()}' /></td>
+            <td><input type='text' value='{$val}' id_ele='{$element->GetId()}' type_ele='{$element->GetCommentType()}' /></td>
+        
         </tr>
     " ;
 
