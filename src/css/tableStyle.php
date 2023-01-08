@@ -91,12 +91,11 @@
         width: 70%;
         height: 35px;
         border-radius: 5px;
-        margin: 0;
+        margin-left: 10px;
         box-sizing: border-box;
         padding-left: 5px;
         outline: none;
         text-align: center;
-        border: 1px solid #072e55;
         cursor: pointer;
     }
     tr td select option{
@@ -114,8 +113,11 @@
         padding-left: 5px;
         outline: none;
         text-align: center;
-        border: 1px solid rgb(7, 46, 85);
+        border: none;
         cursor: pointer;
+    }
+    tr td #btn-select:hover{
+        border: 2px solid #009879;
     }
 
     #textComment{
@@ -128,6 +130,98 @@
         padding: 5px;
         font-size: 16px;
     }
+
+
+    <!--Modal style-->
+
+    #popupCon{
+        height: 100vh;
+        width: 100%;
+        position: absolute;
+        z-index: 99;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    #popup{
+        position: relative;
+        width: 80%;
+        height: 60%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        background-color: rgba(10, 3, 3, 0.3);
+        border-radius: 5px;
+
+    }
+
+    .con:nth-child(1){
+        height: 15%;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: flex-end;
+        padding-inline-end: 5%;
+    }
+    #xbutton{
+        font-size: 20px;
+        font-weight: bold;
+        width: 30px;
+        height: 50%;
+        background-color: #009879;
+        color:  #072e55;
+        border-radius: 10px;
+        transition: 500ms;
+    border: none;
+
+    }
+    #xbutton:hover{
+        background-color: #072e55;
+        color:white ;
+        cursor: pointer;
+    }
+    #xbutton:active{
+
+        transform: translateY(0px);
+    }
+    .con:nth-child(2){
+        display: flex;
+        width: 100%;
+        height: 60%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .con:nth-child(3){
+        display: flex;
+        width: 100%;
+
+        height: 20%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .textAria textarea{
+        width: 85%;
+        height: 80%;
+        border-radius: 5px;
+        font-size: 15px;
+        padding: 5px 10px;
+        outline: none;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    }
+
+
+    #addButt{
+        width: 20%;
+        height: 50%;
+
+    }
+
+
 
 
 

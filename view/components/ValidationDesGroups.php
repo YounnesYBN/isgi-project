@@ -29,6 +29,7 @@ $validationGroupRows = "
 ";
 
 foreach($arrayAfterFilter1 as $element){
+
     $id_user = $_SESSION["info"]["id"] ;
     if($element->GetCommentType()=="select"){
         $otherOption = "";
@@ -73,6 +74,7 @@ foreach($arrayAfterFilter1 as $element){
                </tr>
             " ;
         }
+
         
     }else{
         $val = $element->GetComment()==null ?"":$element->GetComment()->GetText_commantaire();
