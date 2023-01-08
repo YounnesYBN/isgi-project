@@ -15,7 +15,6 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel="stylesheet" href="../src/css/style.css">
-    <link rel="stylesheet" href="../src/css/styleTable.css">
     <link rel="stylesheet" href="../src/css/fontAwesome.min.css">
     <link rel="stylesheet" href="../src/css/selectModal.css">
         <?php include '../src/css/tableStyle.php'?>
@@ -141,8 +140,18 @@ if (isset($_POST['submit'])) {
             </div>
         </form >
     </main>
-    <footer>
-        <p><a href="">ISGI</a> All Right Reserved &copy;</p>
+    <footer style="
+    display: flex;
+    background-color: #072e55;
+    height: 120px;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    
+    ">
+        <p><a href="" style="color: #009879;">ISGI</a> All Right Reserved &copy;</p>
     </footer>
 
     <script src="../src/js/jquery-3.6.3.min.js"></script>

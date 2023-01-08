@@ -129,7 +129,7 @@ document.querySelector("#addButt").addEventListener("click",(e)=>{
 })
 
 function AddOption(id_ele,id_user,message){
-    allSelect = document.querySelectorAll("select")
+    allSelect = document.getElementsByName("selectComment")
     $.ajax({
         type: "POST",
         url: "./../app/controller/addOption.php",
@@ -140,7 +140,7 @@ function AddOption(id_ele,id_user,message){
                 var newOptionVal = response.id_option
                 for (let index = 0; index < allSelect.length; index++) {
                     const element = allSelect[index];
-                    if(element.id = id_ele){
+                    if(element.id == id_ele){
                         element.innerHTML += `<option selected value='${newOptionVal}'>${message}</option>` 
                     }
                     
