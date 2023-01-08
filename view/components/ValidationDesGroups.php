@@ -33,7 +33,7 @@ foreach($arrayAfterFilter1 as $element){
         <tr>
             <td>{$element->GetElement()}</td>
             <td><input type='number' value='{$element->GetDonnees()}' /></td>
-            <td><!--
+            <td>
                 <select name='selectComment' id=''>
                     <option value=''>Choisir Un</option>
                     <option value=''>option A</option>
@@ -41,9 +41,9 @@ foreach($arrayAfterFilter1 as $element){
                     <option value=''>option C</option>
                 </select>
                 <button type='button' id='btn-select'>Ajouter Un option</button>
-                -->
-                <textarea name='textarea' id='textComment' placeholder='Add Comment:' ></textarea>
-            </td>
+                
+                <!--<textarea name='textarea' id='textComment' placeholder='Add Comment:' ></textarea>
+            --></td>
         
         </tr>
     " ;

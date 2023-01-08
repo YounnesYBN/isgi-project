@@ -29,6 +29,36 @@ if (isset($_POST['submit'])) {
 
         <?php include '../src/css/tableStyle.php'?>
     </header>
+        <div id="popupCon" style="
+        display:none;
+        height: 100vh;
+        width: 100%;
+        position: absolute;
+        z-index: 99;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;">
+
+            <div id="popup" style="
+
+
+
+                                    " >
+                <div class="X con">
+                    <button id="xbutton">
+                        X
+                    </button>
+                </div>
+                <div class="textAria con">
+                <textarea placeholder="Ajouter Une Option:" ></textarea>
+                </div>
+                <div class="AddBut con">
+                    <button id="addButt">
+                        Ajouter
+                    </button>
+                </div>
+            </div>
+        </div>
     <main>
         <form action="" method="POST">
             <nav>
