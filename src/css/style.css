@@ -8,6 +8,21 @@ body{
     height: 100vh;
 }
 
+footer{
+    display: flex;
+    background-color: #072e55;
+    height: 120px;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+footer a {
+    color: #009879;
+}
+
 header {
     display: flex;
     background-color: #072e55;

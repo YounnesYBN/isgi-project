@@ -136,11 +136,13 @@ if (isset($_POST['submit'])) {
 
                 </table>
             </section>
-            <button type="submit" name="submit">Validé</button>
+            <div class="btnDiv">
+            <button type="submit" name="submit" id="btn-valide">Valider</button>
+            </div>
         </form >
     </main>
     <footer>
-        
+        <p><a href="">ISGI</a> All Right Reserved &copy;</p>
     </footer>
 
     <script src="../src/js/jquery-3.6.3.min.js"></script>

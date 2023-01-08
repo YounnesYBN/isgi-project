@@ -235,6 +235,34 @@
         border-radius: 5px;
     }
 
+    header form button:hover{
+        background-color: #006c57;
+    }
+
+    .btnDiv{
+        margin: 10px;
+        width: 100%;
+        height: 200px;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+
+    }
+
+    #btn-valide {
+        height: 40px;
+        width: 120px;
+        background-color: #009879;
+        color: #ffffff;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        margin: 80px 0;
+    }
+
+    #btn-valide:hover{
+        background-color: #006c57;
+    }
 
 
 
