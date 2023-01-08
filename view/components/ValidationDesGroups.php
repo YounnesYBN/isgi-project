@@ -39,14 +39,16 @@ foreach($arrayAfterFilter1 as $element){
                 <option value='{$message->GetId()}'>
                 {$message->GetText_commantaire()}
                 </option>";
+                
            }
+        
            $validationGroupRows .= "
            <tr>
                <td>{$element->GetElement()}</td>
                <td><input type='number' value='{$element->GetDonnees()}' /></td>
                <td>
-                   <select name='selectComment' id=''>
-                           <option value=''>Choisir Un</option>
+                   <select name='selectComment' id='{$element->GetId()}'>
+                           <option value='default'>Choisir Un</option>
                            <option value=''>option A</option>
                            <option value=''>option B</option>
                            <option value=''>option C</option>
@@ -62,7 +64,7 @@ foreach($arrayAfterFilter1 as $element){
                <td>{$element->GetElement()}</td>
                <td><input type='number' value='{$element->GetDonnees()}' /></td>
                <td>
-                   <select name='selectComment' id=''>
+                   <select name='selectComment' id='{$element->GetId()}'>
                            <option value=''>Choisir Un</option>
                            <option value=''>option A</option>
                            <option value=''>option B</option>
