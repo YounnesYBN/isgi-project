@@ -19,7 +19,7 @@ function getCookie(cookieName) {
 
 function CreateCoockieIfNotExist(){
     
-    if(getCookie("selectArray") !=undefined){
+    if(getCookie("selectArray") != undefined){
 
     }else{
         var selectArray = []
