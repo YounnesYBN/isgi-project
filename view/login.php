@@ -42,6 +42,9 @@ include dirname(__DIR__). "../app/controller/loginController.php";
         </span>
     </section>
 
+    <footer>
+        <p><a href="">ISGI</a> All Right Reserved &copy;</p>
+    </footer>
 
     
 </body>
