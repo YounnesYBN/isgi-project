@@ -4,23 +4,28 @@ body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family:  sans-serif;
-    height: 100vh;
+    font-family: open sans-serif;
+
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 footer{
     display: flex;
     background-color: #072e55;
-    height: 120px;
+    height: 50px;
     align-items: center;
     justify-content: center;
     color: #fff;
     text-transform: uppercase;
     font-weight: bold;
+    margin-top: auto;
 }
 
 footer a {
     color: #009879;
+
 }
 
 header {
@@ -70,8 +75,7 @@ nav select option{
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    gap: 2%;
+    flex: 1;
 }
 
 .containerLogin{

@@ -28,7 +28,7 @@ if(isset($_POST["submit"])){
                 } 
             }
             if($found == true){
-                header('location:home.php');
+                header('location:importExcelFile.php');
             }else{
                 $errorState["error"] = true;
                 $errorState["message"] = "La connexion a échoué, vérifiez les informations que vous avez saisies.";
