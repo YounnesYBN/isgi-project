@@ -41,7 +41,7 @@ foreach($arrayAfterFilter6 as $element){
                <td><input type='number' id_ele = '{$element->GetId()}' value='{$element->GetDonnees()}' /></td>
                <td>
                    <select name='selectComment' id='{$element->GetId()}'>
-                            
+                   <option value=''>Choisir Un</option>
                            {$otherOption}
                    </select>
                    <button type='button' id='btn-select' id_ele='{$element->GetId()}' id_user='{$id_user}'>Ajouter Un option</button>
@@ -55,7 +55,7 @@ foreach($arrayAfterFilter6 as $element){
                <td><input type='number' id_ele = '{$element->GetId()}' value='{$element->GetDonnees()}' /></td>
                <td>
                    <select name='selectComment' id='{$element->GetId()}'>
-                            
+                   <option value=''>Choisir Un</option>
                            {$otherOption}
                    </select>
                    <button type='button' id='btn-select' id_ele='{$element->GetId()}' id_user='{$id_user}'>Ajouter Un option</button>

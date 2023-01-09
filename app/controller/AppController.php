@@ -126,7 +126,7 @@ class AppController
             if($element->GetCommentType() == "select"){
                 $AllComArray = array();
                 foreach($this->AllTable_association as $tableAssco){
-                    if($tableAssco->GetElement()->GetId() == $element->GetId()){
+                    if($tableAssco->GetElement()->GetId() == $element->GetId() && $tableAssco->Getcommantaire()->GetUtilisateur()->GetId() == $_SESSION["info"]["id"]){
                         $AllComArray[] = $tableAssco->Getcommantaire() ;
                     }
                 }

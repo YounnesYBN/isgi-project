@@ -67,6 +67,7 @@ function findChild(element,child_val){
   
 function SetSelectOnLoad(){
     var allSelectOnDocument = document.getElementsByName("selectComment")
+    console.log(allSelectOnDocument)
     var AllCookiesSelect = JSON.parse(getCookie("selectArray"))
     
     AllCookiesSelect.map((cookiSelect)=>{
@@ -74,7 +75,10 @@ function SetSelectOnLoad(){
             const select = allSelectOnDocument[index];
             if(cookiSelect.select == select.id){
                 var option  = findChild(select,cookiSelect.option)
-                option.selected = true ;
+                if(option != null){
+
+                    option.selected = true ;
+                }
             }
             
           }
