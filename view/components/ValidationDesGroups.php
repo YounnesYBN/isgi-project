@@ -45,13 +45,11 @@ foreach($arrayAfterFilter1 as $element){
            $validationGroupRows .= "
            <tr>
                <td>{$element->GetElement()}</td>
-               <td><input type='number' value='{$element->GetDonnees()}' /></td>
+               <td><input type='number' id_ele = '{$element->GetId()}' value='{$element->GetDonnees()}' /></td>
                <td>
                    <select name='selectComment' id='{$element->GetId()}'>
                            <option value='default'>Choisir Un</option>
-                           <option value=''>option A</option>
-                           <option value=''>option B</option>
-                           <option value=''>option C</option>
+                           
                            {$otherOption}
                    </select>
                    <button type='button' id='btn-select' id_ele='{$element->GetId()}' id_user='{$id_user}'>Ajouter Un option</button>
@@ -62,13 +60,11 @@ foreach($arrayAfterFilter1 as $element){
             $validationGroupRows .= "
            <tr>
                <td>{$element->GetElement()}</td>
-               <td><input type='number' value='{$element->GetDonnees()}' /></td>
+               <td><input type='number' id_ele = '{$element->GetId()}' value='{$element->GetDonnees()}' /></td>
                <td>
                    <select name='selectComment' id='{$element->GetId()}'>
                            <option value=''>Choisir Un</option>
-                           <option value=''>option A</option>
-                           <option value=''>option B</option>
-                           <option value=''>option C</option>
+                           
                            {$otherOption}
                    </select>
                    <button type='button' id='btn-select' id_ele='{$element->GetId()}' id_user='{$id_user}'>Ajouter Un option</button>
@@ -83,8 +79,8 @@ foreach($arrayAfterFilter1 as $element){
         $validationGroupRows .= "
             <tr>
                 <td>{$element->GetElement()}</td>
-                <td><input type='number' value='{$element->GetDonnees()}' /></td>
-                <td><textarea name='textarea' id='textComment' placeholder='Add Comment:' id_ele = '{$element->GetId()}' id_user='{$id_user}' >{$val}</textarea></td>
+                <td><input type='number' id_ele = '{$element->GetId()}' value='{$element->GetDonnees()}' /></td>
+                <td><textarea name='textarea' id='textComment' placeholder='Add Comment:' id_ele = '{$element->GetId()}'  >{$val}</textarea></td>
             </tr>
         " ;
     }

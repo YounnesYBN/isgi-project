@@ -1,5 +1,5 @@
 
-console.log(document.cookie)
+
 
 var GlobalOptionMessage = "";
 var GlobalId_user = "";
@@ -67,14 +67,18 @@ function findChild(element,child_val){
   
 function SetSelectOnLoad(){
     var allSelectOnDocument = document.getElementsByName("selectComment")
+    console.log(allSelectOnDocument)
     var AllCookiesSelect = JSON.parse(getCookie("selectArray"))
-    console.log(AllCookiesSelect)
+    
     AllCookiesSelect.map((cookiSelect)=>{
           for (let index = 0; index < allSelectOnDocument.length; index++) {
             const select = allSelectOnDocument[index];
             if(cookiSelect.select == select.id){
                 var option  = findChild(select,cookiSelect.option)
-                option.selected = true ;
+                if(option != null){
+
+                    option.selected = true ;
+                }
             }
             
           }
@@ -129,7 +133,7 @@ document.querySelector("#addButt").addEventListener("click",(e)=>{
 })
 
 function AddOption(id_ele,id_user,message){
-    allSelect = document.querySelectorAll("select")
+    allSelect = document.getElementsByName("selectComment")
     $.ajax({
         type: "POST",
         url: "./../app/controller/addOption.php",
@@ -151,3 +155,42 @@ function AddOption(id_ele,id_user,message){
         }
     });
 }
+
+document.getElementById("btn-valide").addEventListener("click",()=>{
+    var AllInputElement = [];
+    var AllTextAreaElement = document.querySelectorAll("textarea")
+    var AllinputTypeNumber = document.querySelectorAll('input[type="number"]')
+
+    for (let index = 0; index < AllTextAreaElement.length; index++) {
+        const element = AllTextAreaElement[index];
+        let id_ele = element.getAttribute("id_ele")
+        let ele_type = "textarea"
+        let ele_val = element.value
+        if(id_ele != null){
+            
+            AllInputElement.push({id_ele:id_ele,type:ele_type,value:ele_val})
+        }
+    }
+
+    for (let index = 0; index < AllinputTypeNumber.length; index++) {
+        const element = AllinputTypeNumber[index];
+        let id_ele = element.getAttribute("id_ele")
+        let ele_type = "number"
+        let ele_val = element.value
+        if(id_ele != null){
+            
+            AllInputElement.push({id_ele:id_ele,type:ele_type,value:ele_val})
+        }
+        
+    }
+
+    $.ajax({
+        type: "POST",
+        url: "./../app/controller/updateAllInfo.php",
+        data: {updateInfo:true,allElement:AllInputElement},
+        dataType: "json",
+        success: function (response) {
+            // location.reload()
+        }
+    });
+})

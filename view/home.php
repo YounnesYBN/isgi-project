@@ -136,12 +136,22 @@ if (isset($_POST['submit'])) {
                 </table>
             </section>
             <div class="btnDiv">
-            <button type="submit" name="submit" id="btn-valide">Valider</button>
+            <button type="button" name="submit" id="btn-valide">Valider</button>
             </div>
         </form >
     </main>
-    <footer>
-        <p><a href="">ISGI</a> All Right Reserved &copy;</p>
+    <footer style="
+    display: flex;
+    background-color: #072e55;
+    height: 120px;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    
+    ">
+        <p><a href="" style="color: #009879;">ISGI</a> All Right Reserved &copy;</p>
     </footer>
 
     <script src="../src/js/jquery-3.6.3.min.js"></script>

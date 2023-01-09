@@ -126,7 +126,7 @@ class AppController
             if($element->GetCommentType() == "select"){
                 $AllComArray = array();
                 foreach($this->AllTable_association as $tableAssco){
-                    if($tableAssco->GetElement()->GetId() == $element->GetId()){
+                    if($tableAssco->GetElement()->GetId() == $element->GetId() && $tableAssco->Getcommantaire()->GetUtilisateur()->GetId() == $_SESSION["info"]["id"]){
                         $AllComArray[] = $tableAssco->Getcommantaire() ;
                     }
                 }
@@ -152,6 +152,30 @@ class AppController
             return ["error"=>false,'id_option'=>$rs->fetch()["id_option"]] ;
         }else{
             return ["error"=>true] ;
+        }
+    }
+
+    public function UpdateElementNumber($value,$id_ele){
+        $db = new PDOdb();
+        $con  = $db->ConnecteToDB();
+        if($con){
+            $q = " call updateData({$id_ele},'{$value}')";
+            $db->SelectQeurys($q) ;
+            return false ;
+        }else{
+            return true ;
+        }
+    }
+
+    public function UpdateElementTextaria($id_ele,$id_user,$value,){
+        $db = new PDOdb();
+        $con  = $db->ConnecteToDB();
+        if($con){
+            $q = "call addNewComTypeInput({$id_ele},'{$value}',{$id_user})";
+            $db->SelectQeurys($q) ;
+            return false ;
+        }else{
+            return true;
         }
     }
 
