@@ -22,10 +22,10 @@ section{
 }
 
 
-#btn-ok {
+.buttons button {
     margin-bottom: 20px;
     height: 40px;
-    width: 120px;
+    width: 150px;
     background-color: #009879;
     color: #ffffff;
     border: none;
@@ -34,7 +34,7 @@ section{
 
 }
 
-#btn-ok:hover{
+.buttons button:hover{
     background-color: #006c57;
 }
 
@@ -46,6 +46,23 @@ input[type="file"] {
     padding: 6px 12px;
     cursor: pointer;
     outline: none;
-    border: 1px solid #009879;
+    border: 2px solid #009879;
     border-radius: 10px;
+}
+
+.buttons{
+    width: 335px;
+    margin-bottom: 44px;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.buttons a {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    padding: 12px 49px;
+    text-decoration: none;
+    color: #fff;
 }

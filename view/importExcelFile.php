@@ -70,7 +70,10 @@ if (isset($_POST['submit'])) {
 
     </p>
 
-    <button type="submit" name="submit" id="btn-ok">Valider</button>
+    <div class="buttons">
+        <button type="submit" name="submit" id="btn-ok">Valider</button>
+        <button id="btn-Accueil"><a href="./home.php">Accueil</a></button>
+    </div>
 
 
 </section>
