@@ -1,9 +1,21 @@
 <?php
+
+session_start();
+if ($_SESSION["pass"] == false) {
+    header('location:login.php');
+}
+
+if (isset($_POST['submit'])) {
+    
+}
 ?>
 
 <!doctype html>
 <html lang="en">
 <head>
+    <script src="./../src/js/xlsx.full.min.js"></script>
+    <script src="./../src/js/jquery-3.6.3.min.js"></script>
+
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -23,15 +35,21 @@
     </form>
 
 </header>
-
+<section>
+    <input type="number" id="max_inp" placeholder="max">
+    <input type="number" id="min_inp" placeholder="min">
+</section>
 <section>
 
     <label class="custom-file-upload">
-        <input type="file"/>
+        <input  type="file" id="fileHolder"/>
         <span class="container">
         <img src="../src/img/download.jpg" alt="download photo">
         </span>
     </label>
+    <p id="message">
+
+    </p>
 
     <button type="submit" name="submit" id="btn-ok">Valider</button>
 
@@ -44,5 +62,7 @@
 <footer>
     <p><a href="">ISGI</a> All Right Reserved &copy;</p>
 </footer>
+
+<script src="./../src/js/importedExcelFile.js"></script>
 </body>
 </html>
