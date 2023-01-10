@@ -1,6 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300);
 
 body{
+
+    width: 98%;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -21,14 +23,15 @@ footer{
     text-transform: uppercase;
     font-weight: bold;
     margin-top: auto;
+    width: 102%;
 }
 
 footer a {
     color: #009879;
-
 }
 
 header {
+    width: 102%;
     display: flex;
     background-color: #072e55;
     height: 120px;
@@ -76,6 +79,7 @@ nav select option{
     justify-content: center;
     align-items: center;
     flex: 1;
+    flex-direction: column;
 }
 
 .containerLogin{
@@ -128,6 +132,7 @@ nav select option{
 #alertspan {
     font-size: 15px;
     color: rgb(255, 117, 117);
+    margin-top: 20px;
 }
 
 section table{
@@ -135,5 +140,6 @@ section table{
     left: 50%;
     transform: translate(1%, 1%);
 }
+
 
 

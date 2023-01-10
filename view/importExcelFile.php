@@ -25,6 +25,20 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="../src/css/fontAwesome.min.css">
     <?php include "../src/css/tableStyle.php";?>
     <title>Select Excel File</title>
+    <style>
+        #max_inp, #min_inp{
+            /* width: 35%; */
+            border: 1px solid #006c57;
+            width: 60%;
+            border-radius: 10px;
+        }
+
+        #touxCon{
+            font-size: 20px;
+            padding: 12px;
+            margin: 50px 0;
+        }
+    </style>
 </head>
 <body>
 <header>
@@ -35,9 +49,14 @@ if (isset($_POST['submit'])) {
     </form>
 
 </header>
-<section>
-    <input type="number" id="max_inp" placeholder="max">
-    <input type="number" id="min_inp" placeholder="min">
+<section id="touxCon">
+
+    
+        <input type="number" id="min_inp" placeholder="La Moyen:">
+   
+        <input type="number" id="max_inp" placeholder="Convenable:">
+
+
 </section>
 <section>
 

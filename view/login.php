@@ -26,7 +26,7 @@ include dirname(__DIR__). "../app/controller/loginController.php";
                 <label>Email</label>
                 <input type="text" name="email" id="inEmail">
                 <label>Mot de passe</label>
-                <input type="password" name="password" id="inEmail">
+                <input type="password" name="password">
                 <select name="type">
                     <option>Type De Visiteur</option>
                     <option value="formateur">Formateur</option>

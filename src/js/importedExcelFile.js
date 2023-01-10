@@ -38,23 +38,20 @@ document.getElementById("fileHolder").addEventListener("change", (event) => {
   ControlleFileOnUpload();
 });
 
+
 function ControlleFileOnUpload() {
   let namefile = selectedFileInfo.name;
   let sizefile = selectedFileInfo.size;
   let spileFilearray = namefile.split(".");
   let filetype = spileFilearray[spileFilearray.length - 1];
-  if (filetype != "xlsx" || filetype != "xls") {
+
+
+  if (filetype != "xlsx" || filetype != "xls"  || sizefile >= 5_000_000) {
     Error.error = true;
     ErrorMessage.file =
       "-Le type de fichier n'est pas pris en charge ou Le fichier est trop gros pour être téléchargé";
-  } else {
-    Error.error = false;
-    ErrorMessage.file = "";
-  }
-  if (sizefile >= 5_000_000) {
-    Error.error = true;
-    ErrorMessage.file =
-      "-Le type de fichier n'est pas pris en charge ou Le fichier est trop gros pour être téléchargé";
+    
+      
   } else {
     Error.error = false;
     ErrorMessage.file = "";
@@ -101,9 +98,6 @@ document.getElementById("btn-ok").addEventListener("click", (e) => {
     document.querySelector(".custom-file-upload").style.borderColor = "red";
   } else {
     if (!Error.error && !inputError.error) {
-      console.log(Error);
-      console.log(inputError);
-      console.log(ErrorMessage);
       XLSX.utils.json_to_sheet(data, "out.xlsx");
       if (selectedFile) {
         let fileReader = new FileReader();
@@ -111,7 +105,6 @@ document.getElementById("btn-ok").addEventListener("click", (e) => {
         fileReader.onload = (event) => {
           let data = event.target.result;
           let workbook = XLSX.read(data, { type: "binary" });
-          console.log(workbook);
           let rowObject = XLSX.utils.sheet_to_row_object_array(
             workbook.Sheets[workbook.SheetNames[0]]
           );
@@ -170,6 +163,9 @@ document.getElementById("btn-ok").addEventListener("click", (e) => {
           setVal(18, GetNumberEFMStatus().EFMlocalRialiser);
           setVal(19, GetNumberEFMStatus().EFMregionalRialiser);
 
+          
+          
+
           $.ajax({
             type: "POST",
             url: "./../app/controller/SetDataAfterUpload.php",
@@ -177,18 +173,17 @@ document.getElementById("btn-ok").addEventListener("click", (e) => {
             dataType: "JSON",
             success: function (response) {
                 if(response.error == false){
-                    alert("info updated")
-                    setTimeout(()=>{
+                    
                        location.href = "./home.php"
-                    },2000)
+                   
+                }else{
+                  alert('Il y a un problème inconnu. Rechargez la page et saisissez soigneusement les informations')
                 }
             },
           });
         };
       }
-    } else {
-      
-    }
+    } 
   }
 });
 
@@ -208,7 +203,6 @@ function GetAllModuleGroupedByGroup() {
     });
     AllmoduleGroupedByGroup.push({ groupName: group, AllModule: moduleArray });
   });
-  console.log(AllmoduleGroupedByGroup);
 }
 
 function GetNumTotaleGroupeValides() {
