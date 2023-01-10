@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 if ($_SESSION["pass"] == false) {
@@ -10,12 +10,12 @@ $c4->GetAllElement();
 $c4->GetAllTable_association();
 $c4->SetCommantaire();
 $arrayAfterFilter4 = [];
-foreach($c4->AllElement as $element){
-      if($element->GetAspeets_traiter()->GetLibelle() == "Planification des stages en entreprises"){
-        $arrayAfterFilter4[] = $element ;
-      }
+foreach ($c4->AllElement as $element) {
+    if ($element->GetAspeets_traiter()->GetLibelle() == "Planification des stages en entreprises") {
+        $arrayAfterFilter4[] = $element;
+    }
 }
-$rowSpanNum4 = count($arrayAfterFilter4) + 1 ;
+$rowSpanNum4 = count($arrayAfterFilter4) + 1;
 
 $validationGroupRows4 = "
 
@@ -24,18 +24,18 @@ $validationGroupRows4 = "
     </tr>
 ";
 
-foreach($arrayAfterFilter4 as $element){
-    $id_user = $_SESSION["info"]["id"] ;
-    if($element->GetCommentType()=="select"){
+foreach ($arrayAfterFilter4 as $element) {
+    $id_user = $_SESSION["info"]["id"];
+    if ($element->GetCommentType() == "select") {
         $otherOption = "";
-        if($element->GetComment() != null){
-            foreach($element->GetComment() as $message){
+        if ($element->GetComment() != null) {
+            foreach ($element->GetComment() as $message) {
                 $otherOption .= "
                 <option value='{$message->GetId()}'>
                 {$message->GetText_commantaire()}
                 </option>";
-           }
-           $validationGroupRows4 .= "
+            }
+            $validationGroupRows4 .= "
            <tr>
                <td>{$element->GetElement()}</td>
                <td><input type='number' id_ele = '{$element->GetId()}' value='{$element->GetDonnees()}' /></td>
@@ -47,8 +47,8 @@ foreach($arrayAfterFilter4 as $element){
                    <button type='button' id='btn-select' id_ele='{$element->GetId()}' id_user='{$id_user}'>Ajouter Un option</button>
                </td>
                </tr>
-            " ;
-        }else{
+            ";
+        } else {
             $validationGroupRows4 .= "
            <tr>
                <td>{$element->GetElement()}</td>
@@ -61,25 +61,18 @@ foreach($arrayAfterFilter4 as $element){
                    <button type='button' id='btn-select' id_ele='{$element->GetId()}' id_user='{$id_user}'>Ajouter Un option</button>
                </td>
                </tr>
-            " ;
+            ";
         }
-        
-    }else{
-        $val = $element->GetComment()==null ?"":$element->GetComment()->GetText_commantaire();
+    } else {
+        $val = $element->GetComment() == null ? "" : $element->GetComment()->GetText_commantaire();
         $validationGroupRows4 .= "
         <tr>
         <td>{$element->GetElement()}</td>
         <td><input type='number' id_ele = '{$element->GetId()}' value='{$element->GetDonnees()}' /></td>
         <td><textarea name='textarea' id='textComment' placeholder='Add Comment:' id_ele = '{$element->GetId()}'  >{$val}</textarea></td>
     </tr>
-        " ;
+        ";
     }
-    
-    
-    
-
 }
 
-echo $validationGroupRows4 ;
-
-?>
+echo $validationGroupRows4;

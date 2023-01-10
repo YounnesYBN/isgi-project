@@ -54,9 +54,9 @@ class AppController
         while ($line = $rs->fetch()) {
             $aspeets_traiter = new Aspeets_traiter($line["id_asp"], $line["libelle"]);
 
-            $type = in_array($line["id_glo"],[3,20,27,36,44]) ? "select" : (in_array($line["id_glo"],[5,22,29,38,46]) ? "proposition" : "input") ;
+            $type = in_array($line["id_glo"], [3, 20, 27, 36, 44]) ? "select" : (in_array($line["id_glo"], [5, 22, 29, 38, 46]) ? "proposition" : "input");
 
-            $element = new Element_Traiter($line["id_glo"], $line["element_traitement"], $line["donnees"], $aspeets_traiter,$type);
+            $element = new Element_Traiter($line["id_glo"], $line["element_traitement"], $line["donnees"], $aspeets_traiter, $type);
             $this->AllElement[] = $element;
         }
     }
@@ -80,8 +80,8 @@ class AppController
         $q = "SELECT commantaire.id as id_com, text_commantaire , utilisateur.id as id_uti, utilisateur.email, utilisateur.password, utilisateur.type FROM commantaire INNER join utilisateur on commantaire.id_utilisateur = utilisateur.id;";
         $rs = $db->SelectQeurys($q);
         while ($line = $rs->fetch()) {
-            $user = new User($line["id_uti"],$line["email"],$line["password"],$line["type"]);
-            $commantaire = new Commantaire($line["id_com"],$line["text_commantaire"],$user);
+            $user = new User($line["id_uti"], $line["email"], $line["password"], $line["type"]);
+            $commantaire = new Commantaire($line["id_com"], $line["text_commantaire"], $user);
 
             $this->AllCommantaire[] = $commantaire;
         }
@@ -113,70 +113,72 @@ class AppController
         while ($line = $rs->fetch()) {
             $user = new User($line["id_uti"], $line["email"], $line["password"], $line["type"]);
             $aspeets_traiter = new Aspeets_traiter($line["id_asp"], $line["libelle"]);
-            $type = in_array($line["id_ele"],[3,20,27,36,44]) ? "select" : (in_array($line["id_ele"],[5,22,29,38,46]) ? "proposition" : "input") ;
-            $element = new Element_Traiter($line["id_ele"], $line["element_traitement"], $line["donnees"], $aspeets_traiter,$type);
-            $commantaire = new Commantaire($line["id_com"],$line["text_commantaire"],$user);
-            $table_association = new Table_association($line["id_aso"],$commantaire,$element);
-            $this->AllTable_association[] = $table_association ;
+            $type = in_array($line["id_ele"], [3, 20, 27, 36, 44]) ? "select" : (in_array($line["id_ele"], [5, 22, 29, 38, 46]) ? "proposition" : "input");
+            $element = new Element_Traiter($line["id_ele"], $line["element_traitement"], $line["donnees"], $aspeets_traiter, $type);
+            $commantaire = new Commantaire($line["id_com"], $line["text_commantaire"], $user);
+            $table_association = new Table_association($line["id_aso"], $commantaire, $element);
+            $this->AllTable_association[] = $table_association;
         }
     }
 
-    public function SetCommantaire(){
-        foreach($this->AllElement as $element){
-            if($element->GetCommentType() == "select"){
+    public function SetCommantaire()
+    {
+        foreach ($this->AllElement as $element) {
+            if ($element->GetCommentType() == "select") {
                 $AllComArray = array();
-                foreach($this->AllTable_association as $tableAssco){
-                    if($tableAssco->GetElement()->GetId() == $element->GetId() && $tableAssco->Getcommantaire()->GetUtilisateur()->GetId() == $_SESSION["info"]["id"]){
-                        $AllComArray[] = $tableAssco->Getcommantaire() ;
+                foreach ($this->AllTable_association as $tableAssco) {
+                    if ($tableAssco->GetElement()->GetId() == $element->GetId() && $tableAssco->Getcommantaire()->GetUtilisateur()->GetId() == $_SESSION["info"]["id"]) {
+                        $AllComArray[] = $tableAssco->Getcommantaire();
                     }
                 }
-                $element->SetComment($AllComArray) ;
-            }else{
-                foreach($this->AllTable_association as $tableAssco){
-                    if($tableAssco->GetElement()->GetId() == $element->GetId()){
-                        $element->SetComment($tableAssco->Getcommantaire()); 
+                $element->SetComment($AllComArray);
+            } else {
+                foreach ($this->AllTable_association as $tableAssco) {
+                    if ($tableAssco->GetElement()->GetId() == $element->GetId()) {
+                        $element->SetComment($tableAssco->Getcommantaire());
                     }
                 }
             }
         }
-        
     }
 
-    public function addOption($id_user,$id_ele,$message){
-        
+    public function addOption($id_user, $id_ele, $message)
+    {
+
         $db = new PDOdb();
         $con  = $db->ConnecteToDB();
-        if($con){
+        if ($con) {
             $q = "call addNewComTypeSelectProp({$id_ele},'{$message}',{$id_user})";
-            $rs = $db->SelectQeurys($q) ;
-            return ["error"=>false,'id_option'=>$rs->fetch()["id_option"]] ;
-        }else{
-            return ["error"=>true] ;
+            $rs = $db->SelectQeurys($q);
+            return ["error" => false, 'id_option' => $rs->fetch()["id_option"]];
+        } else {
+            return ["error" => true];
         }
     }
 
-    public function UpdateElementNumber($value,$id_ele){
+    public function UpdateElementNumber($value, $id_ele)
+    {
         $db = new PDOdb();
         $con  = $db->ConnecteToDB();
-        if($con){
+        if ($con) {
             $q = " call updateData({$id_ele},'{$value}')";
-            $db->SelectQeurys($q) ;
-            return false ;
-        }else{
-            return true ;
-        }
-    }
-
-    public function UpdateElementTextaria($id_ele,$id_user,$value,){
-        $db = new PDOdb();
-        $con  = $db->ConnecteToDB();
-        if($con){
-            $q = "call addNewComTypeInput({$id_ele},'{$value}',{$id_user})";
-            $db->SelectQeurys($q) ;
-            return false ;
-        }else{
+            $db->SelectQeurys($q);
+            return false;
+        } else {
             return true;
         }
     }
 
+    public function UpdateElementTextaria($id_ele, $id_user, $value,)
+    {
+        $db = new PDOdb();
+        $con  = $db->ConnecteToDB();
+        if ($con) {
+            $q = "call addNewComTypeInput({$id_ele},'{$value}',{$id_user})";
+            $db->SelectQeurys($q);
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

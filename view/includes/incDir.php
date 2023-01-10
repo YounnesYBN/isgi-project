@@ -10,4 +10,3 @@ include dirname(__DIR__) . '../components/RealisationDesEvaluationDeModule.php';
 include dirname(__DIR__) . '../components/AnalyseResultatsEFMAccompagnentStagaires.php';
 include dirname(__DIR__) . '../components/PlanificationStagesEntrepriser.php';
 include dirname(__DIR__) . '../components/suiviRealisationsFormateurs.php';
-?>

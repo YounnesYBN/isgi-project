@@ -5,42 +5,40 @@ session_start();
 require '../app/controller/AppController.php';
 // -----------------------------
 
-if(isset($_POST["submit"])){
+if (isset($_POST["submit"])) {
     $controller = new AppController();
-    $errorState = ["error"=>false,"message"=>""];
+    $errorState = ["error" => false, "message" => ""];
     $name = $_POST["email"];
     $password = $_POST["password"];
     $type = $_POST["type"];
-    $con = empty($name) == false && empty($password) == false && empty($type) == false ;
-    if($con == true){
-        if($controller->CheckConnectionDB()){
+    $con = empty($name) == false && empty($password) == false && empty($type) == false;
+    if ($con == true) {
+        if ($controller->CheckConnectionDB()) {
             $controller->GetAllUsers();
-            $found = false ;
+            $found = false;
 
-            
-            for ($i=0; $i < count($controller->AllUsers) ; $i++) { 
+
+            for ($i = 0; $i < count($controller->AllUsers); $i++) {
 
                 $user = $controller->AllUsers[$i];
-                if($user->GetName()==$name && $user->GetPassword()==$password && $user->GetType()==$type){
-                    $found = true ;
-                    $_SESSION["info"] = ["id"=>$user->GetId(),"name"=>$user->GetName(),"password"=>$user->GetPassword(),"type"=>$user->GetType()];
-                    $_SESSION["pass"] = true ;
-                } 
+                if ($user->GetName() == $name && $user->GetPassword() == $password && $user->GetType() == $type) {
+                    $found = true;
+                    $_SESSION["info"] = ["id" => $user->GetId(), "name" => $user->GetName(), "password" => $user->GetPassword(), "type" => $user->GetType()];
+                    $_SESSION["pass"] = true;
+                }
             }
-            if($found == true){
+            if ($found == true) {
                 header('location:importExcelFile.php');
-            }else{
+            } else {
                 $errorState["error"] = true;
                 $errorState["message"] = "La connexion a échoué, vérifiez les informations que vous avez saisies.";
             }
-            
-        }else{
+        } else {
             $errorState["error"] = true;
             $errorState["message"] = "La connexion a échoué, erreur inconnue.";
         }
-    }else{
+    } else {
         $errorState["error"] = true;
         $errorState["message"] = "Toutes les informations doivent être saisies.";
     }
 }
-?>

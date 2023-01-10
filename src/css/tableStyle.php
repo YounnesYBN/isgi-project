@@ -15,11 +15,6 @@
         color: #ffffff;
         text-align: left;
     }
-
-    table thead th {
-
-    }
-
     table th,
     table td {
         padding: 12px 15px;
