@@ -67,7 +67,6 @@ function findChild(element,child_val){
   
 function SetSelectOnLoad(){
     var allSelectOnDocument = document.getElementsByName("selectComment")
-    console.log(allSelectOnDocument)
     var AllCookiesSelect = JSON.parse(getCookie("selectArray"))
     
     AllCookiesSelect.map((cookiSelect)=>{
