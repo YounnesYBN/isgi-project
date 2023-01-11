@@ -80,5 +80,3 @@ foreach($arrayAfterFilter8 as $element){
 }
 
 echo $validationGroupRows8 ;
-
-?>
