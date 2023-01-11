@@ -16,6 +16,7 @@ if (isset($_POST['submit'])) {
     <title>Document</title>
     <link rel="stylesheet" href="../src/css/style.css">
     <link rel="stylesheet" href="../src/css/importExcel.css">
+    <script src="./../src/js/table2excel.js"></script>
     <?php include '../src/css/tableStyle.php' ?>
 </head>
 
@@ -91,7 +92,7 @@ if (isset($_POST['submit'])) {
             </nav>
 
             <section>
-                <table>
+                <table id="tableGenerale">
                     <thead>
                         <tr>
                             <th>Aspeets à Trailer</th>
@@ -147,6 +148,7 @@ if (isset($_POST['submit'])) {
 
     <script src="../src/js/jquery-3.6.3.min.js"></script>
     <script src="../src/js/script.js"></script>
+    <script src="../src/js/export.js"></script>
 </body>
 
 </html>
