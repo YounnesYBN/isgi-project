@@ -56,6 +56,7 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
     <main>
+        'AG_IF_TS', 'AG_INFO_TS', 'DIA_ID_TS', 'GC_AA_T', 'GC_GE_TS', 'NTIC_CMOSW_FQ', 'AGC_COMPT_BP', 'AGC_TSGE_TS_RCDS', 'GC_GEOCF_TS', 'DIA_DEVOWFS_TS', 'DIA_IDOSR_TS', 'BP_TCPS_BP', 'AGC_C_BP', 'NTIC_TDI_TS_RCDS', 'DIA_DEVOAM_TS', 'GC_GEOCM_TS', 'GC_GEORH_TS', 'GC_AAOG_T', 'GC_GEOOM_TS', 'GC_AAOCP_T', 'GC_AAOC_T', 'DIA_IDOCC_TS', 'NTIC_CMOSA_FQ', 'NTIC_CMOSE_FQ', 'NTIC_CMOSP_FQ'
         <form action="" method="POST">
             <nav>
                 <select name="filiere" id="selFiliere">

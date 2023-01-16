@@ -23,6 +23,8 @@ var AllGroupDistinct = [];
 var AllmoduleDistinct = [];
 var AllmoduleGroupDistinct = [];
 var AllmoduleGroupedByGroup = [];
+var AllFilierDistinct = [] ;
+var AllGroupeGroupedByFilier = [];
 let data = [
   {
     name: "jayanth",
@@ -104,6 +106,8 @@ document.getElementById("btn-ok").addEventListener("click", (e) => {
           );
           //get All required data
           allInfo = rowObject;
+          GetAllFilierDistict();
+          GetAllGroupByFilier();
           GetGroupDistainct();
           GetModuleDistinct();
           GetModuleGroupDistinct();
@@ -157,21 +161,21 @@ document.getElementById("btn-ok").addEventListener("click", (e) => {
           setVal(18, GetNumberEFMStatus().EFMlocalRialiser);
           setVal(19, GetNumberEFMStatus().EFMregionalRialiser);
 
-          $.ajax({
-            type: "POST",
-            url: "./../app/controller/SetDataAfterUpload.php",
-            data: { setData: true, dataArray: AllData },
-            dataType: "JSON",
-            success: function (response) {
-              if (response.error == false) {
-                location.href = "./home.php";
-              } else {
-                alert(
-                  "Il y a un problème inconnu. Rechargez la page et saisissez soigneusement les informations"
-                );
-              }
-            },
-          });
+          // $.ajax({
+          //   type: "POST",
+          //   url: "./../app/controller/SetDataAfterUpload.php",
+          //   data: { setData: true, dataArray: AllData },
+          //   dataType: "JSON",
+          //   success: function (response) {
+          //     if (response.error == false) {
+          //       // location.href = "./home.php";
+          //     } else {
+          //       alert(
+          //         "Il y a un problème inconnu. Rechargez la page et saisissez soigneusement les informations"
+          //       );
+          //     }
+          //   },
+          // });
         };
       }
     }
@@ -179,6 +183,39 @@ document.getElementById("btn-ok").addEventListener("click", (e) => {
 });
 
 ////////////////////////////////////////////////////////////////// all functions ///////////////////////////////////////////////
+
+function GetAllFilierDistict(){
+  allInfo.forEach(element=>{
+    if(!AllFilierDistinct.includes(element["Code Filière"])){
+      AllFilierDistinct.push(element["Code Filière"])
+    }
+  })
+  console.log(AllFilierDistinct)
+}
+function GetAllGroupByFilier(){
+  AllFilierDistinct.forEach(filier=>{
+    let groupArray = [];
+    allInfo.forEach(line=>{
+
+      if(line["Code Filière"] == filier){
+
+        AllGroupeGroupedByFilier.forEach(filier2=>{
+
+          if(filier == filier2.filier){
+
+            if(!filier2.groups.includes(line.Groupe)){
+              groupArray.push(line.Groupe)
+            }
+          }
+
+        })
+      }
+    })
+    AllGroupeGroupedByFilier.push({filier:filier,groups:groupArray})
+  })
+
+  console.log(AllGroupeGroupedByFilier)
+}
 
 function GetAllModuleGroupedByGroup() {
   //return an array contains object each object have a group and module array grouped by that groupe and thier taux
