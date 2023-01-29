@@ -1,5 +1,3 @@
-
-
 <?php
 class Table_association
 {
@@ -28,15 +26,15 @@ class Table_association
     }
     public function SetId($p)
     {
-        $this->id  = $p;
+        $this->id = $p;
     }
     public function Setcommantaire($p)
     {
-        $this->commantaire  = $p;
+        $this->commantaire = $p;
     }
     public function SetElement($p)
     {
-        $this->element  = $p;
+        $this->element = $p;
     }
 }
 

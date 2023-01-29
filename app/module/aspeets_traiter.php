@@ -20,10 +20,10 @@ class Aspeets_traiter
     }
     public function SetId($p)
     {
-        $this->id  = $p;
+        $this->id = $p;
     }
     public function SetLibelle($p)
     {
-        $this->libelle  = $p;
+        $this->libelle = $p;
     }
 }

@@ -3,8 +3,8 @@ class PDOdb
 {
 
     private $dsn = "mysql:host=localhost;dbname=ofpptdb";
-    private $user  = "root";
-    private $password  = "";
+    private $user = "root";
+    private $password = "";
     private $connection = null;
 
     public function ConnecteToDB()
