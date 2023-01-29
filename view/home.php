@@ -38,39 +38,39 @@ if (isset($_POST['submit'])) {
         align-items: center;
         justify-content: center;">
 
-<div id="popup">
-    <div class="X con">
-        <button id="xbutton">
-            X
-        </button>
+        <div id="popup">
+            <div class="X con">
+                <button id="xbutton">
+                    X
+                </button>
+            </div>
+            <div class="textAria con">
+                <textarea placeholder="Ajouter Une Option:" id="optionTextAria"></textarea>
+            </div>
+            <div class="AddBut con">
+                <button id="addButt">
+                    Ajouter
+                </button>
+            </div>
+        </div>
     </div>
-    <div class="textAria con">
-        <textarea placeholder="Ajouter Une Option:" id="optionTextAria"></textarea>
-    </div>
-    <div class="AddBut con">
-        <button id="addButt">
-            Ajouter
-        </button>
-    </div>
-</div>
-</div>
-<main>
-    <form action="" method="POST">
-        
-        
-        <section>
-            <table id="tableGenerale">
-                <thead>
-                    <tr>
-                        <th>Aspeets à Trailer</th>
-                        <th>Eléments de traitement</th>
-                        <th>les données</th>
-                        <th>commentaires</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    
-                    <?php
+    <main>
+        <form action="" method="POST">
+
+
+            <section>
+                <table id="tableGenerale">
+                    <thead>
+                        <tr>
+                            <th>Aspeets à Trailer</th>
+                            <th>Eléments de traitement</th>
+                            <th>les données</th>
+                            <th>commentaires</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <?php
 
                         if ($_SESSION["info"]['type'] == "directeur") {
                             include 'includes/incDir.php';
@@ -81,17 +81,17 @@ if (isset($_POST['submit'])) {
                         } elseif ($_SESSION["info"]['type'] == "conseiller") {
                             include 'includes/incCons.php';
                         }
-                        
-                        
+
+
                         ?>
                     </tbody>
 
 
-                    
-                    
-                    
-                    
-                    
+
+
+
+
+
                 </table>
             </section>
             <div class="btnDiv">
@@ -112,7 +112,7 @@ if (isset($_POST['submit'])) {
     ">
         <p><a href="https://isgim.edupage.org" style="color: #009879;">ISGI</a> All Right Reserved &copy;</p>
     </footer>
-    
+
     <script src="./../src/js/table2excel.js"></script>
     <script src="../src/js/jquery-3.6.3.min.js"></script>
     <script src="../src/js/script.js"></script>

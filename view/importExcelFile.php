@@ -17,7 +17,8 @@ if (isset($_POST['submit'])) {
     <script src="./../src/js/jquery-3.6.3.min.js"></script>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../src/css/style.css">
     <link rel="stylesheet" href="../src/css/importExcel.css">
@@ -51,7 +52,7 @@ if (isset($_POST['submit'])) {
         }
 
         select option {
-            background-color:white ;
+            background-color: white;
             color: black;
             font-size: 15px;
         }
@@ -79,7 +80,7 @@ if (isset($_POST['submit'])) {
             <option value="2">2A</option>
         </select>
         <select name="" id="filierSelect">
-            
+
         </select>
 
     </section>

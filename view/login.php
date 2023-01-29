@@ -1,17 +1,19 @@
-<?php 
+<?php
 
-include dirname(__DIR__). "../app/controller/loginController.php";
+include dirname(__DIR__) . "../app/controller/loginController.php";
 
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../src/css/style.css">
     <title>Login</title>
 </head>
+
 <body>
     <header>
         <img src="../src/img/Logo.png" alt="ofppt logo">
@@ -38,7 +40,7 @@ include dirname(__DIR__). "../app/controller/loginController.php";
             </form>
         </div>
         <span id="alertspan">
-            <?php echo (isset($errorState) ? 'Oops! : ' . $errorState['message'] : '' )?>
+            <?php echo (isset($errorState) ? 'Oops! : ' . $errorState['message'] : '') ?>
         </span>
     </section>
 
@@ -46,6 +48,7 @@ include dirname(__DIR__). "../app/controller/loginController.php";
         <p><a href="https://isgim.edupage.org">ISGI</a> All Right Reserved &copy;</p>
     </footer>
 
-    
+
 </body>
+
 </html>
