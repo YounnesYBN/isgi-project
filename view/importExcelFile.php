@@ -37,6 +37,24 @@ if (isset($_POST['submit'])) {
             padding: 12px;
             margin: 50px 0;
         }
+
+        select {
+            width: calc(100% / 3 - 1%);
+            background-color: #009879;
+            color: rgb(255, 255, 255);
+            text-align: center;
+            height: 40px;
+            border-radius: 5px;
+            outline: none;
+            font-size: 15px;
+
+        }
+
+        select option {
+            background-color:white ;
+            color: black;
+            font-size: 15px;
+        }
     </style>
 </head>
 
@@ -56,6 +74,13 @@ if (isset($_POST['submit'])) {
 
         <input type="number" id="max_inp" placeholder="Convenable:">
 
+        <select name="" id="selectYear">
+            <option value="1">1A</option>
+            <option value="2">2A</option>
+        </select>
+        <select name="" id="filierSelect">
+            
+        </select>
 
     </section>
     <section>

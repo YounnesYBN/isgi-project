@@ -1,6 +1,8 @@
-var ErrorMessage = { input: "", file: "" };
+var ErrorMessage = { input: "", file: "", filier: "" };
 var inputError = { error: false, max: 0, min: 0 };
 let Error = { error: false };
+var SelectedYear = 1;
+var Selectedfilier = { error: false, value: "" };
 var AllData = [
   { id_ele: 1, val: 0 },
   { id_ele: 2, val: 0 },
@@ -23,8 +25,7 @@ var AllGroupDistinct = [];
 var AllmoduleDistinct = [];
 var AllmoduleGroupDistinct = [];
 var AllmoduleGroupedByGroup = [];
-var AllFilierDistinct = [] ;
-var AllGroupeGroupedByFilier = [];
+var AllFilier = [];
 let data = [
   {
     name: "jayanth",
@@ -32,13 +33,144 @@ let data = [
     abc: "sdef",
   },
 ];
+changeOption();
+document.getElementById("selectYear").addEventListener("change", (e) => {
+  SelectedYear = e.target.value;
+  changeOption();
+});
 
+function changeOption() {
+  if (SelectedYear == 1) {
+    document.getElementById("filierSelect").innerHTML = `
+    <option value="default">Choisissez une filière</option>
+    <option value="GC_GE_TS">Gestion des Entreprises</option> 
+    <option value="DIA_ID_TS">Infrastructure Digitale</option>
+    <option value="AG_IF_TS">Technicien Spécialisé en Production Graphique</option>
+    <option value="AG_INFO_TS">Infographie</option>
+    <option value="GC_AA_T">Assistant Administratif</option>
+    `;
+  } else {
+    document.getElementById("filierSelect").innerHTML = `
+    <option value="default">Choisissez une filière</option>
+            
+            <option value="AG_IF_TS">
+             Technicien Spécialisé en Production Graphique
+                
+            </option>
+           
+            <option value="AG_INFO_TS">
+             Infographie 
+            </option>
+            
+            
+            
+            <option value="NTIC_CMOSW_FQ">
+                Certification Microsoft Office Specialist en Word
+            </option>
+            <option value="AGC_COMPT_BP">
+                Comptabilité
+            </option>
+            <option value="AGC_TSGE_TS_RCDS">
+                (CDS)Technicien Spécialisé en Gestion des Entreprises
+
+            </option>
+            <option value="GC_GEOCF_TS">
+                Gestion des Entreprises option Comptabilité et Finance
+
+            </option>
+            <option value="DIA_DEVOWFS_TS">
+                Développement Digital option Web Full Stack
+
+            </option>
+            <option value="DIA_IDOSR_TS">
+                Infrastructure Digitale option Systèmes et Réseaux
+
+            </option>
+            <option value="BP_TCPS_BP">
+                Tronc commun professionnel service
+
+            </option>
+            <option value="AGC_C_BP">
+                Commerce
+            </option>
+            <option value="NTIC_TDI_TS_RCDS">
+                (CDS)Techniques de Développement Informatique
+
+            </option>
+            <option value="DIA_DEVOAM_TS">
+                Développement Digital option Applications Mobiles
+
+            </option>
+            <option value="GC_GEOCM_TS">
+                Gestion des Entreprises option Commerce et Marketing
+
+            </option>
+            <option value="GC_GEORH_TS">
+                Gestion des Entreprises option Ressources Humaines
+
+            </option>
+            <option value="GC_AAOG_T">
+                Assistant Administratif option Gestion
+
+            </option>
+            <option value="GC_GEOOM_TS">
+                Gestion des Entreprises option Office Manager
+
+            </option>
+            <option value="GC_AAOCP_T">
+                Assistant Administratif option Comptabilité
+
+            </option>
+            <option value="GC_AAOC_T">
+                Assistant Administratif option Commerce
+            </option>
+            <option value="DIA_IDOCC_TS">
+                Infrastructure Digitale option Cloud Computing
+            </option>
+            <option value="NTIC_CMOSA_FQ">
+                Certification Microsoft Office Specialist en Access
+            </option>
+            <option value="NTIC_CMOSE_FQ">
+                Certification Microsoft Office Specialist en Excel
+            </option>
+            <option value="NTIC_CMOSP_FQ">
+
+                Certification Microsoft Office Specialist en PowerPoint
+            </option>
+    `;
+  }
+}
 document.getElementById("fileHolder").addEventListener("change", (event) => {
   selectedFileInfo.name = event.target.files[0].name;
   selectedFileInfo.size = event.target.files[0].size;
   selectedFile = event.target.files[0];
   ControlleFileOnUpload();
 });
+
+document.getElementById("filierSelect").addEventListener("change", (e) => {
+  contrlerFilierSelect();
+});
+
+function contrlerFilierSelect() {
+  let value = document.getElementById("filierSelect").value;
+  console.log(value);
+  if (value == "default") {
+    Selectedfilier.error = true;
+    ErrorMessage.filier = "-Choisissez une filière";
+    document.getElementById("message").innerHTML = [
+      ErrorMessage.file,
+      ErrorMessage.input,
+      ErrorMessage.filier,
+    ].join("<br>");
+    document.getElementById("message").style.color = "red";
+    document.getElementById("filierSelect").style.borderColor = "red";
+  } else {
+    Selectedfilier.error = false;
+    Selectedfilier.value = value;
+    ErrorMessage.filier = "";
+    document.getElementById("filierSelect").style.borderColor = "";
+  }
+}
 
 function ControlleFileOnUpload() {
   let namefile = selectedFileInfo.name;
@@ -54,6 +186,7 @@ function ControlleFileOnUpload() {
     document.getElementById("message").innerHTML = [
       ErrorMessage.file,
       ErrorMessage.input,
+      ErrorMessage.filier,
     ].join("<br>");
     document.getElementById("message").style.color = "red";
     document.querySelector(".custom-file-upload").style.borderColor = "red";
@@ -82,6 +215,7 @@ function controleInput() {
     document.getElementById("message").innerHTML = [
       ErrorMessage.file,
       ErrorMessage.input,
+      ErrorMessage.filier,
     ].join("<br>");
     document.getElementById("message").style.color = "red";
   }
@@ -89,11 +223,12 @@ function controleInput() {
 
 document.getElementById("btn-ok").addEventListener("click", (e) => {
   controleInput();
+  contrlerFilierSelect();
 
   if (selectedFileInfo.size == 0) {
     document.querySelector(".custom-file-upload").style.borderColor = "red";
   } else {
-    if (!Error.error && !inputError.error) {
+    if (!Error.error && !inputError.error && !Selectedfilier.error) {
       XLSX.utils.json_to_sheet(data, "out.xlsx");
       if (selectedFile) {
         let fileReader = new FileReader();
@@ -106,13 +241,12 @@ document.getElementById("btn-ok").addEventListener("click", (e) => {
           );
           //get All required data
           allInfo = rowObject;
-          GetAllFilierDistict();
-          GetAllGroupByFilier();
           GetGroupDistainct();
           GetModuleDistinct();
           GetModuleGroupDistinct();
           GetAllModuleGroupedByGroup();
           GetNumTotaleGroupeValides();
+          ///////
           // set all data
           setVal(1, AllGroupDistinct.length);
           setVal(2, GetNumTotaleGroupeValides());
@@ -161,21 +295,21 @@ document.getElementById("btn-ok").addEventListener("click", (e) => {
           setVal(18, GetNumberEFMStatus().EFMlocalRialiser);
           setVal(19, GetNumberEFMStatus().EFMregionalRialiser);
 
-          // $.ajax({
-          //   type: "POST",
-          //   url: "./../app/controller/SetDataAfterUpload.php",
-          //   data: { setData: true, dataArray: AllData },
-          //   dataType: "JSON",
-          //   success: function (response) {
-          //     if (response.error == false) {
-          //       // location.href = "./home.php";
-          //     } else {
-          //       alert(
-          //         "Il y a un problème inconnu. Rechargez la page et saisissez soigneusement les informations"
-          //       );
-          //     }
-          //   },
-          // });
+          $.ajax({
+            type: "POST",
+            url: "./../app/controller/SetDataAfterUpload.php",
+            data: { setData: true, dataArray: AllData },
+            dataType: "JSON",
+            success: function (response) {
+              if (response.error == false) {
+                location.href = "./home.php";
+              } else {
+                alert(
+                  "Il y a un problème inconnu. Rechargez la page et saisissez soigneusement les informations"
+                );
+              }
+            },
+          });
         };
       }
     }
@@ -183,39 +317,6 @@ document.getElementById("btn-ok").addEventListener("click", (e) => {
 });
 
 ////////////////////////////////////////////////////////////////// all functions ///////////////////////////////////////////////
-
-function GetAllFilierDistict(){
-  allInfo.forEach(element=>{
-    if(!AllFilierDistinct.includes(element["Code Filière"])){
-      AllFilierDistinct.push(element["Code Filière"])
-    }
-  })
-  console.log(AllFilierDistinct)
-}
-function GetAllGroupByFilier(){
-  AllFilierDistinct.forEach(filier=>{
-    let groupArray = [];
-    allInfo.forEach(line=>{
-
-      if(line["Code Filière"] == filier){
-
-        AllGroupeGroupedByFilier.forEach(filier2=>{
-
-          if(filier == filier2.filier){
-
-            if(!filier2.groups.includes(line.Groupe)){
-              groupArray.push(line.Groupe)
-            }
-          }
-
-        })
-      }
-    })
-    AllGroupeGroupedByFilier.push({filier:filier,groups:groupArray})
-  })
-
-  console.log(AllGroupeGroupedByFilier)
-}
 
 function GetAllModuleGroupedByGroup() {
   //return an array contains object each object have a group and module array grouped by that groupe and thier taux
@@ -261,38 +362,34 @@ function setVal(id_ele, newValue) {
 function GetGroupDistainct() {
   allInfo.forEach((line) => {
     let group = line.Groupe;
-    if (!AllGroupDistinct.includes(group)) {
-      //returns an array with all groups names distinct
-      AllGroupDistinct.push(group);
+    if (
+      line["Code Filière"] == Selectedfilier.value &&
+      line["Année de formation"] == SelectedYear
+    ) {
+      if (!AllGroupDistinct.includes(group)) {
+        //returns an array with all groups names distinct
+        AllGroupDistinct.push(group);
+      }
     }
   });
 }
 
 function GetModuleDistinct() {
+  console.log(Selectedfilier.value, SelectedYear);
   allInfo.forEach((line) => {
     let module = line.Module;
-    if (!AllmoduleDistinct.includes(module)) {
+
+    if (
+      line["Code Filière"] == Selectedfilier.value &&
+      line["Année de formation"] == SelectedYear
+    ) {
       //returns an array with all modules names distinct
+
       AllmoduleDistinct.push(module);
     }
   });
+  console.log(AllmoduleDistinct);
 }
-
-// function GetTauxRealiserModule(){
-//     let x = []
-//     AllmoduleDistinct.forEach(module=>{                     //
-//         let Totale = 0
-//             allInfo.forEach(line=>{
-//                 if(line.Module == module && line["Taux Réalisation (P & SYN )"]!= undefined){
-
-//                     Totale += parseFloat(line["Taux Réalisation (P & SYN )"])
-//                 }
-//             })
-//         x.push[{module:module,tauxRealiser:Totale}]
-//     })
-
-//     return x ;
-// }
 
 function GetMHRealiserGlobale(group) {
   let total = 0; //returns total of MHRealiserGlobale depanding on group name that is given in parameter
@@ -314,22 +411,26 @@ function GetModuleGroupDistinct() {
     let regional = line["Régional"];
     let pass = line["Séance EFM"];
     let found = false;
-
-    AllmoduleGroupDistinct.forEach((couple) => {
-      if (couple.module == module && couple.groupe == group) {
-        //returns an array of object that is contains  all groups and module names distinct and thier taux
-        found = true;
-      }
-    });
-
-    if (!found) {
-      AllmoduleGroupDistinct.push({
-        module: module,
-        groupe: group,
-        taux: taux,
-        Regional: regional == "N" ? false : true,
-        pass: pass == "Non" ? false : true,
+    if (
+      line["Code Filière"] == Selectedfilier.value &&
+      line["Année de formation"] == SelectedYear
+    ) {
+      AllmoduleGroupDistinct.forEach((couple) => {
+        if (couple.module == module && couple.groupe == group) {
+          //returns an array of object that is contains  all groups and module names distinct and thier taux
+          found = true;
+        }
       });
+
+      if (!found) {
+        AllmoduleGroupDistinct.push({
+          module: module,
+          groupe: group,
+          taux: taux,
+          Regional: regional == "N" ? false : true,
+          pass: pass == "Non" ? false : true,
+        });
+      }
     }
   });
 }

@@ -16,7 +16,6 @@ if (isset($_POST['submit'])) {
     <title>Document</title>
     <link rel="stylesheet" href="../src/css/style.css">
     <link rel="stylesheet" href="../src/css/importExcel.css">
-    <script src="./../src/js/table2excel.js"></script>
     <?php include '../src/css/tableStyle.php' ?>
 </head>
 
@@ -39,72 +38,39 @@ if (isset($_POST['submit'])) {
         align-items: center;
         justify-content: center;">
 
-        <div id="popup">
-            <div class="X con">
-                <button id="xbutton">
-                    X
-                </button>
-            </div>
-            <div class="textAria con">
-                <textarea placeholder="Ajouter Une Option:" id="optionTextAria"></textarea>
-            </div>
-            <div class="AddBut con">
-                <button id="addButt">
-                    Ajouter
-                </button>
-            </div>
-        </div>
+<div id="popup">
+    <div class="X con">
+        <button id="xbutton">
+            X
+        </button>
     </div>
-    <main>
-        'AG_IF_TS', 'AG_INFO_TS', 'DIA_ID_TS', 'GC_AA_T', 'GC_GE_TS', 'NTIC_CMOSW_FQ', 'AGC_COMPT_BP', 'AGC_TSGE_TS_RCDS', 'GC_GEOCF_TS', 'DIA_DEVOWFS_TS', 'DIA_IDOSR_TS', 'BP_TCPS_BP', 'AGC_C_BP', 'NTIC_TDI_TS_RCDS', 'DIA_DEVOAM_TS', 'GC_GEOCM_TS', 'GC_GEORH_TS', 'GC_AAOG_T', 'GC_GEOOM_TS', 'GC_AAOCP_T', 'GC_AAOC_T', 'DIA_IDOCC_TS', 'NTIC_CMOSA_FQ', 'NTIC_CMOSE_FQ', 'NTIC_CMOSP_FQ'
-        <form action="" method="POST">
-            <nav>
-                <select name="filiere" id="selFiliere">
-                    <option value="Filiere">Filière</option>
-                    <option value="AA">AA</option>
-                    <option value="AAOC">AAOC</option>
-                    <option value="AAOCP">AAOCP</option>
-                    <option value="AAOG">AAOG</option>
-                    <option value="DEVOAM">DEVOAM</option>
-                    <option value="DEVOWF">DEVOWF</option>
-                    <option value="GE">GE</option>
-                    <option value="GEOCF">GEOCF</option>
-                    <option value="GEOCM">GEOCM</option>
-                    <option value="GEOOM">GEOOM</option>
-                    <option value="GEORH">GEORH</option>
-                    <option value="ID">ID</option>
-                    <option value="IF">IF</option>
-                    <option value="INFO">INFO</option>
-                    <option value="IDOCC">IDOCC</option>
-                    <option value="IDOSR">IDOSR</option>
-                    <option value="PG">PG</option>
-                    <option value="TSPG">TSPG</option>
-                </select>
-                <select name="annee" id="selAnnee">
-                    <option value="annee">Année</option>
-                    <option value="A1">A1</option>
-                    <option value="A2">A2</option>
-                </select>
-                <select name="modeFormation" id="selModeFormation">
-                    <option value="modeFormation">Mode Formation</option>
-                    <option value="residetiel">Résidetiel</option>
-                    <option value="alterné">Alterné</option>
-                </select>
-            </nav>
-
-            <section>
-                <table id="tableGenerale">
-                    <thead>
-                        <tr>
-                            <th>Aspeets à Trailer</th>
-                            <th>Eléments de traitement</th>
-                            <th>les données</th>
-                            <th>commentaires</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        <?php
+    <div class="textAria con">
+        <textarea placeholder="Ajouter Une Option:" id="optionTextAria"></textarea>
+    </div>
+    <div class="AddBut con">
+        <button id="addButt">
+            Ajouter
+        </button>
+    </div>
+</div>
+</div>
+<main>
+    <form action="" method="POST">
+        
+        
+        <section>
+            <table id="tableGenerale">
+                <thead>
+                    <tr>
+                        <th>Aspeets à Trailer</th>
+                        <th>Eléments de traitement</th>
+                        <th>les données</th>
+                        <th>commentaires</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <?php
 
                         if ($_SESSION["info"]['type'] == "directeur") {
                             include 'includes/incDir.php';
@@ -115,17 +81,17 @@ if (isset($_POST['submit'])) {
                         } elseif ($_SESSION["info"]['type'] == "conseiller") {
                             include 'includes/incCons.php';
                         }
-
-
+                        
+                        
                         ?>
                     </tbody>
 
 
-
-
-
-
-
+                    
+                    
+                    
+                    
+                    
                 </table>
             </section>
             <div class="btnDiv">
@@ -146,7 +112,8 @@ if (isset($_POST['submit'])) {
     ">
         <p><a href="https://isgim.edupage.org" style="color: #009879;">ISGI</a> All Right Reserved &copy;</p>
     </footer>
-
+    
+    <script src="./../src/js/table2excel.js"></script>
     <script src="../src/js/jquery-3.6.3.min.js"></script>
     <script src="../src/js/script.js"></script>
     <script src="../src/js/export.js"></script>
