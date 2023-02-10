@@ -66,43 +66,41 @@ if (isset($_POST['submit'])) {
             <button type="submit" style="width: 90px; margin: 15px " id="btn-logout">Logout</button>
         </form>
 
-    </header>
-    <section id="touxCon">
-
-
-        <input type="number" id="min_inp" placeholder="La Moyen:">
-
-        <input type="number" id="max_inp" placeholder="Convenable:">
-
-        <select name="" id="selectYear">
-            <option value="1">1A</option>
-            <option value="2">2A</option>
-        </select>
-        <select name="" id="filierSelect">
-            
-        </select>
-
-    </section>
-    <section>
-
-        <label class="custom-file-upload">
-            <input type="file" id="fileHolder" />
+    </header >
+    
+    <section id="lable-con">
+        <label class="custom-file-uploadOne">
+            <input type="file" id="fileOne" />
             <span class="container">
-                <img src="../src/img/download.jpg" alt="download photo">
+                <img src="../src/img/download.jpg" alt="download photo" width="100%">
             </span>
+            <p id="message">
+    
+            </p>
         </label>
-        <p id="message">
 
-        </p>
+        <label class="custom-file-uploadTwo">
+            <input type="file" id="fileTwo" />
+            <span class="container">
+                <img src="../src/img/download.jpg" alt="download photo" width="100%">
+            </span>
+            <p id="message">
+    
+            </p>
+        </label>
 
-        <div class="buttons">
-            <button type="submit" name="submit" id="btn-ok">Valider</button>
-            <button id="btn-Accueil"><a href="./home.php">Accueil</a></button>
-            <button id="btn-demandeMH"><a href="./demandeMH.php">demande MH</a></button>
-        </div>
+        
 
 
     </section>
+
+    <div class="valider-but-con">
+            <button  id="valider-but">Valider</button>
+            <p id="valid-error-message" style="color:red">
+                
+            </p>
+            
+        </div>
 
 
 
@@ -111,7 +109,8 @@ if (isset($_POST['submit'])) {
         <p><a href="https://isgim.edupage.org">ISGI</a> All Right Reserved &copy;</p>
     </footer>
 
-    <script src="./../src/js/importedExcelFile.js"></script>
+    
+    <script src="./../src/js/demandeMH.js"></script>
 </body>
 
 </html>

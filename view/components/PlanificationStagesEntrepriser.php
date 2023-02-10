@@ -25,6 +25,7 @@ $validationGroupRows4 = "
 ";
 
 foreach ($arrayAfterFilter4 as $element) {
+    
     $id_user = $_SESSION["info"]["id"];
     if ($element->GetCommentType() == "select") {
         $otherOption = "";

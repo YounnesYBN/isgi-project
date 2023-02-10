@@ -21,6 +21,16 @@ section{
     gap: 20px;
 }
 
+#lable-con{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    width: 100%;
+    gap: 20px;
+}
+
 
 .buttons button {
     margin-bottom: 20px;
@@ -49,12 +59,21 @@ input[type="file"] {
     border: 2px solid #009879;
     border-radius: 10px;
 }
+.custom-file-uploadOne,.custom-file-uploadTwo{
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    outline: none;
+    border: 2px solid #009879;
+    border-radius: 10px;
+}
 
 .buttons{
-    width: 335px;
+    width: fit-content;
     margin-bottom: 44px;
     display: flex;
     justify-content: space-between;
+    gap: 10px;
 
 }
 
@@ -65,4 +84,22 @@ input[type="file"] {
     padding: 12px 49px;
     text-decoration: none;
     color: #fff;
+}
+.valider-but-con{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.valider-but-con button{
+    margin-bottom: 20px;
+    height: 40px;
+    width: 150px;
+    background-color: #009879;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
 }
