@@ -22,6 +22,7 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="../src/css/style.css">
     <link rel="stylesheet" href="../src/css/importExcel.css">
     <?php include "../src/css/tableStyle.php"; ?>
+    <script src="./../src/js/xlsx.full.min.js"></script>
     <title>Select Excel File</title>
     <style>
         #max_inp,
@@ -68,10 +69,11 @@ if (isset($_POST['submit'])) {
 
     </header >
     
-    <section id="lable-con">
+    <section id="lable-con" style="margin-top:10px">
         <label class="custom-file-uploadOne">
+            <div><h3  style="color:#009879">fichier 1</h3><p style="color:gray"><em>contient tous les modèles et leur heure totale </em></p></div>
             <input type="file" id="fileOne" />
-            <span class="container">
+            <span class="container" >
                 <img src="../src/img/download.jpg" alt="download photo" width="100%">
             </span>
             <p id="message">
@@ -80,8 +82,10 @@ if (isset($_POST['submit'])) {
         </label>
 
         <label class="custom-file-uploadTwo">
+            
+            <div><h3 style="color:#009879">fichier 2</h3><p style="color:gray"><em> contient tous les complexes et villes pour chaque <br> secteur</em></p></div>
             <input type="file" id="fileTwo" />
-            <span class="container">
+            <span class="container" >
                 <img src="../src/img/download.jpg" alt="download photo" width="100%">
             </span>
             <p id="message">
