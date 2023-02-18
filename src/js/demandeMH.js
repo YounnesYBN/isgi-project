@@ -4,11 +4,10 @@ var allInfoOne;
 var allInfoTwo;
 
 //----------------------------------------
-var allFilierDistictWithModels = [];
-var allFilierWithModelsOnAllYears = [];
-var allCodeEFPandcode_filier = [];
-var allfilierExistsInFile1andFile2 = [];
+var all_codeEFP_distinct = [];
+
 var finallArray = [];
+//-------------------------------------------------------
 const fileOneError = {
   IsError: false,
   message: { type: "", size: "" },
@@ -152,35 +151,18 @@ document.getElementById("valider-but").addEventListener("click", (e) => {
       errorEle.innerHTML = "";
       //get data
 
-      GetallFilierDistict();
-      GetAllModulesWithHours();
-      GetFilierGroupNumber();
-      updateModuleHour();
-      // console.log(allFilierDistictWithModels, "filier - model");
-      allFilierDistictWithModels.map((ele) => {
-        if (ele.code_filier == "NTIC_TDI_TS_RCDS") {
-          console.log(ele);
-        }
-      });
+      //get codeEFP distinct and for each codeEFP it's ville and complexe {codeEFP : ,info:{ville:,complexe:},filier:[]}
+      Get_CodeEFP_distinct();
+      //get foreach codeEFP filier distinct and for each filier it's code_filier, numGroup, year and Metiers {code_filier:,year:,numGroup:,metiers:[]}
+      Get_for_each_CodeEFP_filier_distinct();
+      Get_for_each_filier_Metiers_distinct_with_hour();
+      update_metier_hour_by_numGroup();
+      sumUp_doublicated_metier_foreach_filier();
+      distinct_filier_foreach_codeEFP();
+      sumUp_doublicated_metier_foreach_complex();
+      sumUp_doublicated_metier_by_ville_and_complex()
 
-      GetallFilierWithModelsOnAllYears();
-      SumUpallDoublicatedModels();
-      allFilierWithModelsOnAllYears.map((ele) => {
-        if (ele.code_filier == "NTIC_TDI_TS_RCDS") {
-          console.log(ele);
-        }
-      });
-      GetallCodeEFPandcode_filier();
-      allCodeEFPandcode_filier.map(ele=>{
-        if(ele.code_filier == "AGC_C_BP"){
-          console.log(ele)
-        }
-      })
-      GetForEachFilierCodeEFP();
-
-      GetGroupallModelsByCodeEFP();
       console.log(finallArray);
-      exportFile();
     } else {
       errorEle.innerHTML =
         "-veuillez télécharger les fichiers requis avec le bon type";
@@ -189,70 +171,6 @@ document.getElementById("valider-but").addEventListener("click", (e) => {
     errorEle.innerHTML = "-veuillez télécharger les fichiers requis";
   }
 });
-
-function updateModuleHour() {
-  allFilierDistictWithModels.map((ele, index) => {
-    if (ele.info.numGroup) {
-      ele.info.models.map((model) => {
-        model.hour = model.hour * ele.info.numGroup;
-      });
-    }
-  });
-}
-
-function SumUpallDoublicatedModels() {
-  allFilierWithModelsOnAllYears.map((ele) => {
-    var newArray = [];
-    ele.allModels.map((model) => {
-      var found = false;
-      var indexVar = null;
-      newArray.map((model2, index) => {
-        if (model.name == model2.name) {
-          found = true;
-          indexVar = index;
-        }
-      });
-      if (found) {
-        newArray[indexVar].hour += model.hour;
-      } else {
-        newArray.push(model);
-      }
-    });
-    ele.allModels = newArray;
-  });
-}
-
-function GetFilierGroupNumber() {
-  allFilierDistictWithModels.map((ele, index) => {
-    allInfoTwo.map((line) => {
-      if (
-        line["Code filiére"] == ele.code_filier &&
-        line["Année de formation"] == ele.info.year
-      ) {
-        ele.info.numGroup = line[" Nbre Groupe 22-23 Réalisé"];
-      }
-    });
-  });
-}
-
-function GetallFilierDistict() {
-  allInfoOne.map((line) => {
-    let code_filier = line["Code Filière Carte"];
-    let year = line["Anneé de Formation"];
-    found = false;
-    allFilierDistictWithModels.map((ele) => {
-      if (ele.code_filier == code_filier && ele.info.year == year) {
-        found = true;
-      }
-    });
-    if (!found) {
-      allFilierDistictWithModels.push({
-        code_filier: code_filier,
-        info: { year: year },
-      });
-    }
-  });
-}
 
 function GetDataFileOne() {
   selectedFileOne = fileOneInfo.selectedFile;
@@ -287,156 +205,205 @@ function GetDataFileTwo() {
     };
   }
 }
-function GetAllModulesWithHours() {
-  allFilierDistictWithModels.map((ele) => {
-    var modelArray = [];
-    allInfoOne.map((line) => {
-      var code_filier1 = line["Code Filière Carte"];
-      var year1 = line["Anneé de Formation"];
-      if (code_filier1 == ele.code_filier && year1 == ele.info.year) {
-        modelArray.push({
-          name: line["Métier"],
-          hour: parseInt(line["MHT"]),
+
+function Get_CodeEFP_distinct() {
+  allInfoTwo.map((line) => {
+    var found = false;
+    var ville = line["Ville"];
+    var Complexe = line["Complexe"];
+    all_codeEFP_distinct.map((ele) => {
+      if (ele.codeEFP == line["CodeEFP"]) {
+        found = true;
+      }
+    });
+
+    if (!found) {
+      all_codeEFP_distinct.push({
+        codeEFP: line["CodeEFP"],
+        info: { ville: ville, complexe: Complexe },
+        filiers: [],
+      });
+    }
+  });
+}
+
+function Get_for_each_CodeEFP_filier_distinct() {
+  all_codeEFP_distinct.map((ele1) => {
+    allInfoTwo.map((line) => {
+      if (line["CodeEFP"] == ele1.codeEFP) {
+        var exel_code_filier = line["Code filiére"];
+        var year = line["Année de formation"];
+        var numGroup = line[" Nbre Groupe 22-23 Réalisé"];
+        var found = false;
+
+        //see if filier already exists
+        ele1.filiers.map((filier) => {
+          if (filier.code_filier == exel_code_filier && filier.year == year) {
+            found = true;
+          }
+        });
+
+        //push new filier with it's information if not exists
+        if (!found) {
+          ele1.filiers.push({
+            code_filier: exel_code_filier,
+            year: year,
+            numGroup: numGroup,
+            Metiers: [],
+          });
+        }
+      }
+    });
+  });
+}
+
+function Get_for_each_filier_Metiers_distinct_with_hour() {
+  all_codeEFP_distinct.map((ele) => {
+    ele.filiers.map((filier) => {
+      allInfoOne.map((line) => {
+        if (
+          filier.code_filier == line["Code Filière Carte"] &&
+          filier.year == line["Anneé de Formation"]
+        ) {
+          var mitier = line["Métier"];
+         
+          var hour = line["MHT"];
+          filier.Metiers.push({ name: mitier&&mitier.toUpperCase(), hour: hour });
+        }
+      });
+    });
+  });
+}
+
+function update_metier_hour_by_numGroup() {
+  all_codeEFP_distinct.map((ele) => {
+    ele.filiers.map((filier) => {
+      filier.Metiers.map((metier) => {
+        metier.hour = metier.hour * filier.numGroup;
+      });
+    });
+  });
+}
+
+function sumUp_doublicated_metier_foreach_filier() {
+  all_codeEFP_distinct.map((ele) => {
+    ele.filiers.map((filier) => {
+      var array = [];
+      filier.Metiers.map((mitier) => {
+        var found = false;
+        var ele_index = null;
+        array.map((mitier2, index) => {
+          if (mitier.name == mitier2.name) {
+            found = true;
+            ele_index = index;
+          }
+        });
+        if (found) {
+          array[ele_index].hour += mitier.hour;
+        } else {
+          array.push(mitier);
+        }
+      });
+      filier.Metiers = array;
+    });
+  });
+}
+
+function distinct_filier_foreach_codeEFP() {
+  all_codeEFP_distinct.map((ele) => {
+    var array = [];
+    ele.filiers.map((filier) => {
+      var found = false;
+      var dis_fil_index = null;
+      array.map((dis_filier, index) => {
+        if (filier.code_filier == dis_filier.code_filier) {
+          found = true;
+          dis_fil_index = index;
+        }
+      });
+      //if filier exists or not
+      if (found) {
+        filier.Metiers.map((mitier) => {
+          var found2 = false;
+          var index2 = null;
+          array[dis_fil_index].Metiers.map((mitier2, index) => {
+            if (mitier.name == mitier2.name) {
+              found2 = true;
+              index2 = index;
+            }
+          });
+          if (found2) {
+            array[dis_fil_index].Metiers[index2].hour += mitier.hour;
+          } else {
+            array[dis_fil_index].Metiers.push(mitier);
+          }
+        });
+      } else {
+        array.push({
+          code_filier: filier.code_filier,
+          Metiers: filier.Metiers,
         });
       }
     });
-    ele.info.models = modelArray;
+    ele.filiers = array;
   });
 }
 
-function GetallFilierWithModelsOnAllYears() {
-  allFilierDistictWithModels.map((array1) => {
-    var found = false;
-    allFilierWithModelsOnAllYears.map((array2) => {
-      if (array2.code_filier == array1.code_filier) {
-        found = true;
-      }
-    });
-
-    if (found) { 
-      allFilierWithModelsOnAllYears.map((array2) => {
-        if (array2.code_filier == array1.code_filier) {
-          if (!array2.years.includes(array1.info.year)) {
-            array2.years.push(array1.info.year);
-            array1.info.models.map((model1) => {
-              var found2 = false;
-              var index2Con = null;
-
-              array2.allModels.map((model2, index2) => {
-                if (model1.name == model2.name) {
-                  found2 = true;
-                  index2Con = index2;
-                }
-              });
-              if (found2) {
-                array2.allModels[index2Con].hour += model1.hour;
-              } else {
-                array2.allModels.push(model1);
-              }
-            });
+function sumUp_doublicated_metier_foreach_complex() {
+  all_codeEFP_distinct.map((ele) => {
+    var array = [];
+    ele.filiers.map((filier) => {
+      filier.Metiers.map((metier) => {
+        var found = false;
+        var ele_index = null;
+        array.map((mitierDis, index) => {
+          if (mitierDis.name == metier.name) {
+            found = true;
+            ele_index = index;
           }
+        });
+        if (found) {
+          array[ele_index].hour += metier.hour;
+        } else {
+          array.push(metier);
         }
       });
-    } else {
-      var yearArray = [];
-      yearArray.push(array1.info.year);
-      allFilierWithModelsOnAllYears.push({
-        code_filier: array1.code_filier,
-        years: yearArray,
-        allModels: [].concat(array1.info.models),
-      });
-    }
-  });
-}
-
-function GetallCodeEFPandcode_filier() {
-  allInfoTwo.map((line) => {
-    found = false;
-    allCodeEFPandcode_filier.map((ele) => {
-      if (
-        line["CodeEFP"] == ele.codeEFP &&
-        line["Code filiére"] == ele.code_filier
-      ) {
-        found = true;
-      }
     });
-    if (!found) {
-      allCodeEFPandcode_filier.push({
-        codeEFP: line["CodeEFP"],
-        code_filier: line["Code filiére"],
-        complex: line["Complexe"],
-        ville: line["Ville"],
-      });
-    }
+    ele.finalResult = array;
   });
 }
 
-function GetForEachFilierCodeEFP() {
-  allFilierWithModelsOnAllYears.map((ele1) => {
-    var codeEFP = null;
-    var element1 = ele1;
-    var complex = null;
-    var ville = null;
+function sumUp_doublicated_metier_by_ville_and_complex() {
+  all_codeEFP_distinct.map((ele) => {
+    const { complexe, ville } = ele.info;
     var found = false;
-    allCodeEFPandcode_filier.map((ele2) => {
-      if (ele2.code_filier == element1.code_filier) {
+    var ele_index = null;
+    finallArray.map((final_ele,index)=>{
+      if(final_ele.complexe == complexe && final_ele.ville == ville){
         found = true;
-        codeEFP = ele2.codeEFP;
-        complex = ele2.complex;
-        ville = ville;
+        ele_index = index
       }
-    });
-    if (found) {
-      element1.codeEFP = codeEFP;
-      element1.complex = complex;
-      element1.ville = ville;
-      allfilierExistsInFile1andFile2.push(element1);
-    }
-  });
-}
+    })
+    if(found){
+      ele.finalResult.map(metier=>{
+        var found2 = false;
+        var ele_index2 = null
+        finallArray[ele_index].Metiers.map((metier2,index)=>{
+          if(metier.name == metier2.name){
+            found2 = true;
+            ele_index2 = index
+          }
+        })
 
-function GetGroupallModelsByCodeEFP() {
-  allCodeEFPandcode_filier.map((array1) => {
-    var BigCodeEFP = array1.codeEFP;
-    var complex = array1.complex;
-    var ville = array1.ville;
-    var modelsArray = [];
-    var found = false;
-    finallArray.map((x) => {
-      if (x.codeEFP == BigCodeEFP) {
-        found = true;
-      }
-    });
-
-    if (!found) {
-      allfilierExistsInFile1andFile2.map((array2) => {
-        if (array2.codeEFP == BigCodeEFP) {
-          array2.allModels.map((mode1) => {
-            var found2 = false;
-            modelsArray.map((mode2) => {
-              if (mode1.name == mode2.name) {
-                found2 = true;
-              }
-            });
-
-            if (found2) {
-              modelsArray.map((mode2) => {
-                if (mode1.name == mode2.name) {
-                  mode2.hour += mode1.hour;
-                }
-              });
-            } else {
-              modelsArray.push(mode1);
-            }
-          });
+        if(found2){
+          finallArray[ele_index].Metiers[ele_index2].hour += metier.hour
+        }else{
+          finallArray[ele_index].Metiers.push(metier)
         }
-      });
-      finallArray.push({
-        complex: complex,
-        ville: ville,
-        codeEFP: BigCodeEFP,
-        allmodels: modelsArray,
-      });
+      })
+      
+    }else{
+      finallArray.push({complexe : complexe , ville: ville ,Metiers: ele.finalResult})
     }
   });
 }
