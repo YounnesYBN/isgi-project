@@ -147,28 +147,93 @@ document.getElementById("valider-but").addEventListener("click", (e) => {
       if (ele.IsError == true) {
         IsAllInfoUploadedValid = false;
       }
-      if (IsAllInfoUploadedValid) {
-        errorEle.innerHTML = "";
-        //get data
-
-        GetallFilierDistict();
-        GetAllModulesWithHours();
-        GetallFilierWithModelsOnAllYears();
-        GetallCodeEFPandcode_filier();
-        GetForEachFilierCodeEFP();
-        //   console.log(allCodeEFPandcode_filier);
-        GetGroupallModelsByCodeEFP();
-        console.log(finallArray);
-        exportFile();
-      } else {
-        errorEle.innerHTML =
-          "-veuillez télécharger les fichiers requis avec le bon type";
-      }
     });
+    if (IsAllInfoUploadedValid) {
+      errorEle.innerHTML = "";
+      //get data
+
+      GetallFilierDistict();
+      GetAllModulesWithHours();
+      GetFilierGroupNumber();
+      updateModuleHour();
+      // console.log(allFilierDistictWithModels, "filier - model");
+      allFilierDistictWithModels.map((ele) => {
+        if (ele.code_filier == "NTIC_TDI_TS_RCDS") {
+          console.log(ele);
+        }
+      });
+
+      GetallFilierWithModelsOnAllYears();
+      SumUpallDoublicatedModels();
+      allFilierWithModelsOnAllYears.map((ele) => {
+        if (ele.code_filier == "NTIC_TDI_TS_RCDS") {
+          console.log(ele);
+        }
+      });
+      GetallCodeEFPandcode_filier();
+      allCodeEFPandcode_filier.map(ele=>{
+        if(ele.code_filier == "AGC_C_BP"){
+          console.log(ele)
+        }
+      })
+      GetForEachFilierCodeEFP();
+
+      GetGroupallModelsByCodeEFP();
+      console.log(finallArray);
+      exportFile();
+    } else {
+      errorEle.innerHTML =
+        "-veuillez télécharger les fichiers requis avec le bon type";
+    }
   } else {
     errorEle.innerHTML = "-veuillez télécharger les fichiers requis";
   }
 });
+
+function updateModuleHour() {
+  allFilierDistictWithModels.map((ele, index) => {
+    if (ele.info.numGroup) {
+      ele.info.models.map((model) => {
+        model.hour = model.hour * ele.info.numGroup;
+      });
+    }
+  });
+}
+
+function SumUpallDoublicatedModels() {
+  allFilierWithModelsOnAllYears.map((ele) => {
+    var newArray = [];
+    ele.allModels.map((model) => {
+      var found = false;
+      var indexVar = null;
+      newArray.map((model2, index) => {
+        if (model.name == model2.name) {
+          found = true;
+          indexVar = index;
+        }
+      });
+      if (found) {
+        newArray[indexVar].hour += model.hour;
+      } else {
+        newArray.push(model);
+      }
+    });
+    ele.allModels = newArray;
+  });
+}
+
+function GetFilierGroupNumber() {
+  allFilierDistictWithModels.map((ele, index) => {
+    allInfoTwo.map((line) => {
+      if (
+        line["Code filiére"] == ele.code_filier &&
+        line["Année de formation"] == ele.info.year
+      ) {
+        ele.info.numGroup = line[" Nbre Groupe 22-23 Réalisé"];
+      }
+    });
+  });
+}
 
 function GetallFilierDistict() {
   allInfoOne.map((line) => {
@@ -248,25 +313,23 @@ function GetallFilierWithModelsOnAllYears() {
       }
     });
 
-    if (found) {
+    if (found) { 
       allFilierWithModelsOnAllYears.map((array2) => {
         if (array2.code_filier == array1.code_filier) {
           if (!array2.years.includes(array1.info.year)) {
             array2.years.push(array1.info.year);
             array1.info.models.map((model1) => {
               var found2 = false;
+              var index2Con = null;
 
-              array2.allModels.map((model2) => {
+              array2.allModels.map((model2, index2) => {
                 if (model1.name == model2.name) {
                   found2 = true;
+                  index2Con = index2;
                 }
               });
               if (found2) {
-                array2.allModels.map((model2) => {
-                  if (model1.name == model2.name) {
-                    model2.hour += model1.hour;
-                  }
-                });
+                array2.allModels[index2Con].hour += model1.hour;
               } else {
                 array2.allModels.push(model1);
               }
