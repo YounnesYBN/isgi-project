@@ -146,7 +146,7 @@ class AppController
     {
 
         $db = new PDOdb();
-        $con  = $db->ConnecteToDB();
+        $con = $db->ConnecteToDB();
         if ($con) {
             $q = "call addNewComTypeSelectProp({$id_ele},'{$message}',{$id_user})";
             $rs = $db->SelectQeurys($q);
@@ -159,7 +159,7 @@ class AppController
     public function UpdateElementNumber($value, $id_ele)
     {
         $db = new PDOdb();
-        $con  = $db->ConnecteToDB();
+        $con = $db->ConnecteToDB();
         if ($con) {
             $q = " call updateData({$id_ele},'{$value}')";
             $db->SelectQeurys($q);
@@ -169,10 +169,10 @@ class AppController
         }
     }
 
-    public function UpdateElementTextaria($id_ele, $id_user, $value,)
+    public function UpdateElementTextaria($id_ele, $id_user, $value, )
     {
         $db = new PDOdb();
-        $con  = $db->ConnecteToDB();
+        $con = $db->ConnecteToDB();
         if ($con) {
             $q = "call addNewComTypeInput({$id_ele},'{$value}',{$id_user})";
             $db->SelectQeurys($q);

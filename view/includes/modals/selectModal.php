@@ -34,7 +34,7 @@ font-size: 20px;
 width: 30px;
 height: 50%;
 background-color: transparent;
-color:  red;
+color: red;
 border-radius: 50px;
 border:0px;
 transition: 500ms;
@@ -88,14 +88,14 @@ height: 50%;
 }
 <div id="popupCon" style="display:none;">
 
-    <div id="popup" >
+    <div id="popup">
         <div class="X con">
             <button id="xbutton">
                 X
             </button>
         </div>
         <div class="textAria con">
-                <textarea name="" id="" >
+            <textarea name="" id="">
 
                 </textarea>
         </div>
