@@ -161,6 +161,7 @@ document.getElementById("valider-but").addEventListener("click", (e) => {
       distinct_filier_foreach_codeEFP();
       sumUp_doublicated_metier_foreach_complex();
       sumUp_doublicated_metier_by_ville_and_complex()
+      exportFile()
 
       console.log(finallArray);
     } else {
@@ -411,12 +412,12 @@ function sumUp_doublicated_metier_by_ville_and_complex() {
 function exportFile() {
   var allData = [];
   finallArray.map((ele) => {
-    const { complex, ville, allmodels } = ele;
-    allmodels.map((model) => {
+    const { complexe, ville, Metiers } = ele;
+    Metiers.map((model) => {
       const { name, hour } = model;
       allData.push({
-        cle: complex + ville + name,
-        complexe: complex,
+        cle: complexe + ville + name,
+        complexe: complexe,
         ville: ville,
         "Métier global": name,
         "Besoin Total en heure": hour,
